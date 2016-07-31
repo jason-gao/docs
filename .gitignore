@@ -2,3 +2,6 @@
 /download
 /binary
 .idea/*
+.DS_Store
+composer.lock
+phpunit.xml
