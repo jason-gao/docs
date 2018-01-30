@@ -1,2 +1,3 @@
 # docs
-docs for note
+
+* 添加ab和wrk benchmark安装使用文档
