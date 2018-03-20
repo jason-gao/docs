@@ -1,3 +1,15 @@
+* 编译扩展流程
+    * phpize 生成configure可以执行文件
+    * ./configure check everything
+        ```bash
+creating libtool
+appending configuration tag "CXX" to libtool
+configure: creating ./config.status
+config.status: creating config.h
+```
+
+
+
 # 安装xdebug扩展
     * https://xdebug.org/download.php
     - A list of all settings:  http://xdebug.org/docs-settings.php     
