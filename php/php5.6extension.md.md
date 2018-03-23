@@ -1,13 +1,26 @@
 * 编译扩展流程
-    * phpize 生成configure可以执行文件
-    * ./configure check everything
+    * phpize 根据config.m4生成configure脚本，phpize是基于autoconf的封装
+    * ./configure 这个脚本是用来检测系统和环境状态，依赖库和头文件是否存在，编译配置等 
         ```bash
-creating libtool
-appending configuration tag "CXX" to libtool
-configure: creating ./config.status
-config.status: creating config.h
-```
+        
+        creating libtool
+        appending configuration tag "CXX" to libtool
+        configure: creating ./config.status
+        config.status: creating config.h
+        
+        ```
 
+    * php-config
+        * 这个工具执行后会打印当前PHP安装在哪里目录，API版本号是什么，扩展目录在哪里等信息。
+        configure脚本需要依赖它找到PHP安装的目录
+    * make
+        * 用来将.c源文件编译为目标文件。
+    * gcc
+        * 编译器，将*.c源文件编译为目标文件。并连接所有目标文件生成swoole.so    
+    * make install
+        * 将编译好的扩展文件，如swoole.so安装到PHP的扩展目录下
+          
+          
 
 
 # 安装xdebug扩展
@@ -24,10 +37,11 @@ config.status: creating config.h
 * phpize
 * 找到php-config路径，这里是 /usr/local/php-5.6.20/bin/php-config
 * ./configure --enable-xdebug --with-php-config=/usr/local/php-5.6.20/bin/php-config
-* make
+* make -j 2
 * make test
 * make install
 * vim /etc/php.ini
+
 ```
 
 [Xdebug]  

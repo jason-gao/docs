@@ -17,3 +17,11 @@
 * composer update
     * 指定php版本更新composer
     * /usr/local/php7.2.1/bin/php /usr/local/bin/composer update
+    
+* composer自身更新，回滚
+    * composer self-update
+    * composer self-update --rollback
+    
+    
+    
+    
