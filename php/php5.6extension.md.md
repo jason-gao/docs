@@ -9,7 +9,7 @@
         config.status: creating config.h
         
         ```
-
+    * ./configure --help 查看扩展有哪些编译参数    
     * php-config
         * 这个工具执行后会打印当前PHP安装在哪里目录，API版本号是什么，扩展目录在哪里等信息。
         configure脚本需要依赖它找到PHP安装的目录
