@@ -1,0 +1,1 @@
+* https://support.mozilla.org/zh-CN/kb/%E2%80%9C%E6%82%A8%E7%9A%84%E8%BF%9E%E6%8E%A5%E4%B8%8D%E5%AE%89%E5%85%A8%E2%80%9D%E6%98%AF%E4%BB%80%E4%B9%88%E6%84%8F%E6%80%9D
