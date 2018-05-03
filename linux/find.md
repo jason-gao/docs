@@ -1,0 +1,1 @@
+* find / -name "src" -type d  查找目录名包含src的
