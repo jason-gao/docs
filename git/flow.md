@@ -45,7 +45,8 @@ git config --global alias.co checkout
 	git checkout master
 	git checkout -b xxx 基于本地master新拉取分支
 4. 删除远程分支
-   git push origin --delete xxx
+   * git push origin --delete xxx
+   * git push origin :xxx
 
 ##生成公钥、私钥
 1. 安装好git
