@@ -2,6 +2,8 @@
 * https://docs.docker-cn.com/engine/installation/linux/docker-ce/ubuntu/
 * http://www.itfanr.cc/2017/08/25/ubuntu-install-docker-ce-and-configure-mirror-accelerator/
 * https://github.com/widuu/chinese_docker/blob/master/installation/ubuntu.md
+* https://www.cnblogs.com/SzeCheng/p/6822905.html
+* https://draveness.me/docker
 
 * 查看系统版本
     * lsb_release -a
