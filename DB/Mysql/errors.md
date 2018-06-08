@@ -37,3 +37,17 @@
 1. 分空字段，必须给默认值， 否则报错
 +   SQLSTATE[HY000]: General error: 1449 The user specified as a definer ('php'@'192.168.3.%') does not exist
 1. 见trigger.md
+
+
+## 连接错误：
+    * host或者port不对
+        * PDOException
+        * message: 
+            * host/port: SQLSTATE[HY000] [2002] Connection refused
+            * host: SQLSTATE[HY000] [2002] php_network_getaddresses: getaddrinfo failed: Name or service not known
+        * code: 2002
+    * username或者password不对
+        * PDOException
+        * message: SQLSTATE[HY000] [1045] Access denied for user 'php1'@'192.168.5.188' (using password: YES)
+        * code: 1045
+        
