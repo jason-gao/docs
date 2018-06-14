@@ -1,3 +1,6 @@
+* https://hub.docker.com/
+* https://www.keakon.net/2016/03/07/Docker%E5%AD%A6%E4%B9%A0%E5%90%8E%E8%AE%B0
+
 # 运行一个web应用
 * docker pull training/webapp
 * docker run -d -P training/webapp python app.py  自动映射宿主机端口
@@ -44,7 +47,7 @@ c295440e2c3d        training/webapp     "python app.py"     4 minutes ago       
 
 ```
 其中--it：
-i，容器的标准输入保持打开
+i，容器的标准输入[STDIN]保持打开
 t，Docker分配一个伪终端（pseudo-tty）并绑定到容器的标准输入
 
 --rm，运行结束后删除容器。再后面就是我们要执行的命令。

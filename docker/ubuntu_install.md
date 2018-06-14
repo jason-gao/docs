@@ -66,4 +66,16 @@
     #   docker-ce | 17.03.1~ce-0~ubuntu-xenial | http://mirrors.aliyun.com/docker-ce/linux/ubuntu xenial/stable amd64 Packages
     #   docker-ce | 17.03.0~ce-0~ubuntu-xenial | http://mirrors.aliyun.com/docker-ce/linux/ubuntu xenial/stable amd64 Packages
     # Step 2: 安装指定版本的Docker-CE: (VERSION 例如上面的 17.03.1~ce-0~ubuntu-xenial)
-    # sudo apt-get -y install docker-ce=[VERSION]           
+    # sudo apt-get -y install docker-ce=[VERSION]
+               
+* 说明
+  * Docker container（容器）：
+    * 前面所说的应用就是在它内部跑的。它有自己完整的文件系统和操作系统，反正应用需要的一切本地资源都有。
+  * Docker image（镜像）：
+    * 应用代码和各种库和文件会被打包成一个文件，这就是 image 了。它还可以设置环境变量、运行的入口等元信息。它需要被加载到容器里才能运行。
+  * Docker daemon：监听客户端请求，提供容器和镜像的管理功能。
+  * Docker client：与 daemon 通信，完成管理功能。
+  * Docker Engine：由 Docker daemon 及其 API 组成的一个服务端应用。
+  * Docker Machine：可以在虚拟机上安装 Docker Engine 的工具。
+  * Docker registry：存放 image 的地方。最大的一个是 Docker Hub，可以很容易地知道别人的镜像是怎么做的。                                
+                                  
