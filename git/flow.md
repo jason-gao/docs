@@ -74,3 +74,8 @@ a)已经push到线上
 原因：忽略了大小写
 解决：
 git config core.ignorecase false
+
+
+# 拉取指定的分支的代码
+* git clone -b 分支名 仓库地址 代码目录
+    * git clone -b xx https://github.com/xx.git /data/www/xx
