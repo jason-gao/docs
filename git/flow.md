@@ -40,7 +40,7 @@ git config --global alias.st status
 git config --global alias.co checkout
 
 2. 删除本地分支 
-   git branch -d xxx
+   git branch -d/-D xxx
 3. 基于本地分支拉取新分支
 	git checkout master
 	git checkout -b xxx 基于本地master新拉取分支

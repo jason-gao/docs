@@ -1,5 +1,18 @@
 * https://hub.docker.com/
 * https://www.keakon.net/2016/03/07/Docker%E5%AD%A6%E4%B9%A0%E5%90%8E%E8%AE%B0
+* https://yeasy.gitbooks.io/docker_practice/image/list.html
+
+# 命令
+  * docker pull ubuntu:16.04 获取镜像
+  * docker run -it --rm \
+        ubuntu:16.04 \
+        bash    运行镜像，启动容器
+  * docker image ls 列出镜像
+  * docker system df 镜像体积
+  * docker image ls -f dangling=true 虚悬镜像
+    * docker image prune 删除虚悬镜像
+  *         
+
 
 # 运行一个web应用
 * docker pull training/webapp
