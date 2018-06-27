@@ -66,6 +66,7 @@ a)已经push到线上
 # 忽略已经推送过的文件不起作用
 原因：已经被track
 解决：
+  * https://mirrors.edge.kernel.org/pub/software/scm/git/docs/git-rm.html
 1. git rm -r --cached WebRoot/Home/index.php
 2. git add .
 3. git cm -m "xx"
