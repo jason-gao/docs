@@ -1,6 +1,7 @@
 * https://hub.docker.com/
 * https://www.keakon.net/2016/03/07/Docker%E5%AD%A6%E4%B9%A0%E5%90%8E%E8%AE%B0
 * https://yeasy.gitbooks.io/docker_practice/image/list.html
+* https://www.awaimai.com/665.html
 
 # 命令
   * docker pull ubuntu:16.04 获取镜像
@@ -11,8 +12,45 @@
   * docker system df 镜像体积
   * docker image ls -f dangling=true 虚悬镜像
     * docker image prune 删除虚悬镜像
-  *         
+    * docker rmi $(docker images -f "dangling=true" -q)
+          
+* docker run [OPTIONS] IMAGE [COMMAND] [ARG...] [flags]
+* docker run -it --rm node node --version
 
+```
+
+-i，容器的标准输入[STDIN]保持打开
+
+-t，Docker分配一个伪终端（pseudo-tty）并绑定到容器的标准输入
+
+--rm，运行结束后删除容器。再后面就是我们要执行的命令。
+
+-d：守护进程
+
+--link 
+link 是在两个contain之间建立一种父子关系，父container中的web，可以得到子container db上的信息。
+通过link的方式创建容器，我们可以使用被Link容器的别名进行访问，而不是通过IP，解除了对IP的依赖。
+不过，link的方式只能解决单机容器间的互联，多机的情况下，需要通过别的方式进行连接。
+--link=container_name or id:name 使用这个选项在你运行一个容器时，可以在此容器的/etc/hosts文件中增加一个额外的name主机名，这个名字为container_name的容器的IP地址的别名。这使得新容器的内部进程可以访问主机名为name的容器而不用知道它的Ip。
+内网是走docker0的网桥，互相之间是Ping的通的，但是docker run 建立容器的时候，它的Ip地址是不可控制的，所以docker 用link的方式使web能够访问到db中的数据
+
+-P :是容器内部端口[随机]映射到主机的高端口
+-p :是容器内部端口绑定到[指定]的主机端口  Publish a container's port(s) to the host  -p 8081:80 nginx 8081宿主机端口 80是docker容器端口
+
+```
+
+* docker port angry_edison
+* docker logs -f c295440e2c3d
+* docker top angry_edison
+* docker stats -a
+* docker inspect angry_edison
+* docker stop angry_edison
+* docker start angry_edison
+* docker restart angry_edison
+* docker rm angry_edison  删除容器时，容器必须是停止状态
+* docker ps -l 最后一次创建的容器
+
+    
 
 # 运行一个web应用
 * docker pull training/webapp
@@ -28,23 +66,7 @@ c295440e2c3d        training/webapp     "python app.py"     4 minutes ago       
 * http://192.168.5.189:32768
 * docker port c295440e2c3d
     * 5000/tcp -> 0.0.0.0:32768  docker 5000端口，宿主机是32768
-* docker port angry_edison
-* docker logs -f c295440e2c3d
-* docker top angry_edison
-* docker stats -a
-* docker inspect angry_edison
-* docker stop angry_edison
-* docker start angry_edison
-* docker restart angry_edison
-* docker rm angry_edison  删除容器时，容器必须是停止状态
-* docker ps -l 最后一次创建的容器
 
-
-* 参数说明：
-    * -P :是容器内部端口随机映射到主机的高端口
-    * -p :是容器内部端口绑定到指定的主机端口  Publish a container's port(s) to the host 
-        * docker run --name nginx-server1 -d -p 8081:80 nginx 8081宿主机端口 80是docker容器端口
-    * -d :守护进程
 
 
 # 运行nginx
@@ -55,20 +77,6 @@ c295440e2c3d        training/webapp     "python app.py"     4 minutes ago       
  
 # 运行nodejs web
 * docker pull node
-
-* docker run [OPTIONS] IMAGE [COMMAND] [ARG...] [flags]
-* docker run -it --rm node node --version
-
-```
--i，容器的标准输入[STDIN]保持打开
-
--t，Docker分配一个伪终端（pseudo-tty）并绑定到容器的标准输入
-
---rm，运行结束后删除容器。再后面就是我们要执行的命令。
-
--d：后台运行
-
-```
 * sudo docker run --rm -itd -p 3000:3000 --name try-mustache -v "$(pwd)":/www -w /www  node npm start
 * 指定端口
 * sudo docker run --rm -it -p 3001:3001 --name try-mustache-2 -v "$(pwd)":/www -w /www  node  env PORT=3001 node server.js
@@ -144,3 +152,6 @@ c295440e2c3d        training/webapp     "python app.py"     4 minutes ago       
             * 进到Dockerfile目录
             * sudo docker build -t express-app .
             * sudo docker run -d --name express-app -p 80:3000 express-app
+            
+* 搭建lnmp环境
+  * https://www.awaimai.com/2120.html

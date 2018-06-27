@@ -10,7 +10,6 @@
 * http://xxlegend.com/2017/05/23/PhpStorm%20Xdebug%E8%BF%9C%E7%A8%8B%E8%B0%83%E8%AF%95%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E5%8E%9F%E7%90%86%E5%88%86%E6%9E%90%E5%8F%8A%E9%97%AE%E9%A2%98%E6%8E%92%E6%9F%A5/
 
 
-
 # windows xampp
     * php5.6 + apache
 * php -i > E:/YunDun/phpini.txt
@@ -41,16 +40,21 @@
     ```
     * 重启apache
     
-* Xdebug helper
+* Xdebug helper chrome插件
     * https://chrome.google.com/webstore/detail/xdebug-helper/eadndfjplgieldjbigjakmdgkmoaaaoc?hl=zh-CN
-    * debug
+    * 点debug
 * 配置phpstorm xdebug
-    * 配置server
-    * edit configuration 添加web application项目
+    * 每个项目都配置单独的server和configuration
+    * 配置server settings->php->servers
+    * edit configuration 添加web application项目->选择刚添加的server，入口默认是/
     * 选择server
-    * 点电话图标
+    * 点电话图标 监听xdebug
     * 点小虫子
-    
+* 快捷键
+    * F7：步入
+      F8：跳过
+      Shift + F8：步出
+      Alt + F9：调到光标处
     
 # centos 6.7
     * openresty-1.9.15.1 + php5.6.24 + mariadb
@@ -74,6 +78,6 @@
     * https://blog.csdn.net/samxx8/article/details/8275935
     * http://blog.k-res.net/archives/2078.html
     * https://www.mnstory.net/2017/10/14/phpstorm-remote-debug-with-xdebug
-    
+    * https://www.awaimai.com/1029.html
 
     

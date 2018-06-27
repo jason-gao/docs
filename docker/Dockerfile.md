@@ -10,4 +10,7 @@
           ADD ["<src>",... "<dest>"]      
 
 # question
-  * Dockerfile里显示的EXPOSE越来越多，如何管理？
+  * Dockerfile里显示的EXPOSE端口越来越多，如何管理？
+  * 容器启的端口越来越多，如何管理？
+  * 容器卷如何管理？
+  
