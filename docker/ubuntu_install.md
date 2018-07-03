@@ -47,7 +47,7 @@
     * GRUB_CMDLINE_LINUX="cgroup_enable=memory swapaccount=1"
     * sudo update-grub
     * sudo reboot
-           
+* gpasswd -a ${USER} docker 把当前用户加到docker用户组 不用每次启动Docker都得加sudo了           
            
 * ali源
     # step 1: 安装必要的一些系统工具
