@@ -1,3 +1,5 @@
+* https://meta.tn/a/76b2585bb521861f3f9906ae16de80cb31750ed167545493614da36a1440a0f2
+
 1 master不要直接操作,需要多建分支（严格按照功能拉取分支，减少因为某个功能上不了导致其他功能也无法更新的问题）
 2. 冲突解决：
 合并产生冲突时：
@@ -34,6 +36,10 @@ Bug分支的名字，可以采用bug-*的形式命名
 
 
 ##git常用设置
+
+# 显示当前的配置
+git config --list
+
 1. 设置别名
 git config --global alias.cm commit
 git config --global alias.st status
@@ -80,3 +86,15 @@ git config core.ignorecase false
 # 拉取指定的分支的代码
 * git clone -b 分支名 仓库地址 代码目录
     * git clone -b xx https://github.com/xx.git /data/www/xx
+
+
+# tag
+1) delete local tag '12345'
+    git tag -d 12345
+2) delete remote tag '12345' (eg, GitHub version too)
+    git push origin :refs/tags/12345
+3) alternative approach
+    git push --delete origin tagName
+    git tag -d tagName   
+    
+    

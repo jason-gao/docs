@@ -26,3 +26,4 @@
   * 掘金
   * Cookies
   * 马克飞象
+  * Vue.js devtools  vue调试
