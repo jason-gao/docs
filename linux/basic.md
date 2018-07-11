@@ -1,5 +1,9 @@
 # 回到上次目录 cd -
 
+# 家目录 cd ~
+    * root /root
+    * 普通用户 /home/xx用户
+
 # 查看cpu信息 more /proc/cpuinfo
 
 # 查看内存：cat /proc/meminfo
@@ -17,5 +21,8 @@
 
 # 查看centos具体版本
     * cat /etc/redhat-release   response:CentOS release 6.7 (Final)
+    
+# su su- sudo su sudo
+    * http://cn.linux.vbird.org/linux_basic/0410accountmanager_4.php
         
     
