@@ -79,5 +79,13 @@
     * http://blog.k-res.net/archives/2078.html
     * https://www.mnstory.net/2017/10/14/phpstorm-remote-debug-with-xdebug
     * https://www.awaimai.com/1029.html
+    
+    
+# xdebug 命令行调试
+    * https://confluence.jetbrains.com/display/PhpStorm/Debugging+PHP+CLI+scripts+with+PhpStorm#DebuggingPHPCLIscriptswithPhpStorm-2.StarttheScriptwithDebuggerOptions
+    * https://xdebug.org/docs/remote
+    * https://blog.rabin.io/sysadmin/how-to-debug-php-script-from-the-cli-with-php-xdebug
+    * debug： cd /mnt/hgfs/YunDun/home-v4-cli/ && php -dxdebug.remote_enable=1 -dxdebug.remote_mode=req -dxdebug.remote_port=9000 -dxdebug.remote_host=192.168.5.118  -dxdebug.remote_autostart=1 -dxdebug.idekey=PHPSTORM bin/ypfclijob \\Controller\\Cli\\Batch\\BatchCloudDnsOp\\main
+
 
     
