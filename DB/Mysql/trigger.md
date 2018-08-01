@@ -1,6 +1,7 @@
 2016/08/18
 ==========
 
+* SHOW TRIGGERS
 
 # 触发器
 1. Definer example:php@127.0.0.1 , 必须和mysql.user里的Host和User对应，即必须有此条记录
@@ -37,4 +38,5 @@ end||
 delimiter ;
 
 ```
+
 

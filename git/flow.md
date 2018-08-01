@@ -64,7 +64,7 @@ git config --global alias.co checkout
 
 # 版本回退
 a)已经push到线上
-1.git reset --hard xx版本 （本地）
+1. git reset --hard xx版本 （本地）
 2. git push origin master:master -f （强推到远程仓库）
 3. git reset --hard xx版本 （线上需要将本地的更新回退到xx版本，关键）
 4. git pull (拉取最新)

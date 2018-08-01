@@ -1,0 +1,2 @@
+C:\Users\NP-007\Desktop>pscp.exe -r Index.php pscp.exe test root@192.168.5.188:/
+tmp
