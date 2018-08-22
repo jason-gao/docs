@@ -20,3 +20,8 @@
 }
 ```
 
+* group by & avg
+    * https://www.elastic.co/guide/en/elasticsearch/reference/current/_executing_aggregations.html
+    * https://es.xiaoleilu.com/010_Intro/35_Tutorial_Aggregations.html
+    
+    

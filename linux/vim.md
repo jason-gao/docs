@@ -19,7 +19,10 @@ wget -qO- https://raw.github.com/ma6174/vim/master/setup.sh | sh -x
  <a name="缩进">缩进</a>
  * 插入状态下缩进: Ctrl-T 右缩 ; Ctrl-D 左缩
  * 命令状态下左右缩进: >> 右缩进 ; << 左缩进 ; n<< 或 n>> ; 缩进多行，如4>>
- 
+
+* n 继续查找
+* N 反向查找
+
  
  
  

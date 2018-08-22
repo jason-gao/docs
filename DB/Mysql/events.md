@@ -2,6 +2,12 @@
 
 * show events
 
+* 打开事件调度
+    * 添加事件不生效？
+show variables like '%event_scheduler%';
+SET GLOBAL event_scheduler = ON;
+
+
 # 定时更新表记录
 ```mysql
 
@@ -22,3 +28,41 @@ CREATE DEFINER=`php`@`172.16.100.%` EVENT `delete_data_pre30_log` ON SCHEDULE EV
 end
 
 ```
+
+* 更新状态
+```mysql
+
+CREATE DEFINER=`php`@`172.16.100.%` EVENT `update_cpv4_member_plan` ON SCHEDULE EVERY 3 SECOND STARTS '2018-05-23 09:42:00' ON COMPLETION NOT PRESERVE DISABLE ON SLAVE DO BEGIN
+  update cpv4_member_plan set plan_status=2 where expire_time <= NOW() limit 100;
+end
+
+```
+
+
+-- 开启事件调度的支持
+SET GLOBAL event_scheduler = 1;
+-- 列出事件
+SHOW EVENTS;
+SHOW CREATE EVENT del_user;
+  
+-- 查询触发器是否启动。
+SHOW VARIABLES LIKE 'event_scheduler'; 
+
+-- 定义存储过程  （修改test表里面的id都为5）
+DELIMITER //
+DROP PROCEDURE IF EXISTS usp_update_test;
+CREATE PROCEDURE usp_update_test()
+-- expire_interval: the unit is hour
+-- delete_per_count: specify the count do every delete operation
+BEGIN
+    DECLARE id INT;
+		SET id=5;   
+		update test set id=id;
+END //
+DELIMITER ;
+-- 定义事件  （一分钟执行一次上面的存储过程）
+DROP EVENT IF EXISTS del_test;
+CREATE EVENT del_test
+ON SCHEDULE EVERY 1 MINUTE
+DO
+CALL usp_update_test()

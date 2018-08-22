@@ -1,13 +1,12 @@
 # windows git shell
 
-1. 新建myalias.sh
-> cd /etc/profile.d && touch myalias.sh
-2.
-> vim /etc/profile.d/myalias.sh
+1. cd /etc/profile.d && touch myalias.sh
+2. vim /etc/profile.d/myalias.sh
 ```
 alias workspace='cd E:/YunDun/'
 alias gg='git rev-parse --abbrev-ref HEAD | xargs -t -i git push origin {}:{}'
 alias ggt='git rev-parse --abbrev-ref HEAD | xargs -t -i git push origin {}:tester-{}'
+alias gpo='git rev-parse --abbrev-ref HEAD | xargs -t -i git pull origin {}'
 alias makeapidocv4='apidoc -i E:/YunDun/yundun_api_V4/Controller -o E:/YunDun/apidoc/api_v4'
 alias makeapidocsso='apidoc -i E:/YunDun/sso-backend-server/Controller -o E:/YunDun/apidoc/api_v4/sso_api'
 alias makeapidocadminv5api='apidoc -i E:/YunDun/admin-v5-api/Controller -o E:/YunDun/apidoc/api_v4/adminV5Api'
@@ -18,3 +17,4 @@ alias updateapidoctotest='git checkout master && git branch -d tester && git pus
 alias update_apidoctotest_onestep='makeapidocv4 && makeapidocsso && makeapidocadminv5api && pullmaster && cmmaster && updateapidoctotest && ctime'
 
 ```
+3. source /etc/profile.d/myalias.sh

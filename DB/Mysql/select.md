@@ -17,3 +17,17 @@ where (BINARY domain REGEXP '[A-Z]')
 LIMIT 100;
 
 ```
+
+* 时间分组 统计每天注册数
+   ```mysql
+SELECT
+	count(id) AS register_count,
+	FROM_UNIXTIME(register_time, '%Y-%m-%d') AS datetime
+FROM
+	table_name
+WHERE
+	register_time >= '1448899200'
+AND register_time < '1450108800'
+GROUP BY
+	datetime;
+```
