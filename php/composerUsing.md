@@ -1,3 +1,5 @@
+* composer加到系统的环境变量
+    * 
 * 加到composer.json的require-dev
     * composer require  phpunit/phpunit ~4.0 --dev
 

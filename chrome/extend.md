@@ -1,6 +1,7 @@
 # 扩展开发和安全
   * https://zhuanlan.zhihu.com/p/27427557
   * http://drops.xmd5.com/static/drops/tools-738.html
+  * https://developer.mozilla.org/zh-CN/docs/Mozilla/Add-ons/WebExtensions/Your_first_WebExtension
 
 # 常用chrome插件
   * Adblock Plus 拦截广告

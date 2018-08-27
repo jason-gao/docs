@@ -53,6 +53,10 @@ git config --global alias.co checkout
 4. 删除远程分支
    * git push origin --delete xxx
    * git push origin :xxx
+   
+5. 设置用户名和邮箱
+   * git config --global  user.name xxx
+   * git config --global  user.email xx@xx.com
 
 ##生成公钥、私钥
 1. 安装好git
