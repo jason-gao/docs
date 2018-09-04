@@ -21,3 +21,6 @@
 
 # ryf
 * https://github.com/ruanyf/reading-list
+
+# js
+* https://github.com/fouber/blog/issues/10

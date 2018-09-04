@@ -31,3 +31,7 @@ AND register_time < '1450108800'
 GROUP BY
 	datetime;
 ```
+
+* 当前时间
+    * select now(); --2018-09-04 13:55:54
+    * select unix_timestamp(now()); --1536040561
