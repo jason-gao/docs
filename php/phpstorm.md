@@ -4,3 +4,8 @@
     * https://codeclimate.com/github/vijos/openvj/.phpstorm.meta.php
     * https://github.com/synga-nl/phpstorm-meta
     * https://confluence.jetbrains.com/display/PhpStorm/PhpStorm+Advanced+Metadata
+    
+    
+* 正则替换
+    * ctrl+R 勾选regex
+    * \* @apiGroup 云解析-自定义线路 -> \* @apiGroup 云解析-自定义线路\n     * @apiPrivate notEmpty
