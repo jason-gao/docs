@@ -1,4 +1,5 @@
 # mysql事件
+* https://segmentfault.com/a/1190000015239896
 
 * show events
 
@@ -11,10 +12,10 @@ SET GLOBAL event_scheduler = ON;
 # 定时更新表记录
 ```mysql
 
-CREATE DEFINER=`php`@`172.16.100.%` EVENT `update_ha_log_ip_fortransfer` ON SCHEDULE EVERY 3 SECOND STARTS '2018-05-22 18:35:00' ON COMPLETION NOT PRESERVE DISABLE ON SLAVE DO BEGIN
+CREATE DEFINER=`php`@`xx.xx.xx.%` EVENT `update_ha_log_ip_fortransfer` ON SCHEDULE EVERY 3 SECOND STARTS '2018-05-22 18:35:00' ON COMPLETION NOT PRESERVE DISABLE ON SLAVE DO 
   update table01 set ip = '1.1.1.1'  where ip =  '1.1.1.2' limit 1000;
   update table02 set ip = '1.1.1.1'  where ip =  '1.1.1.3' limit 1000;
-end
+
 
 ```
 

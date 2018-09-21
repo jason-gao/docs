@@ -1,3 +1,4 @@
+* https://divinglaravel.com/redis/redis-hashes
 
 * 连接redis
     * telnet test.yundun.com 6379

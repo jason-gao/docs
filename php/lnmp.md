@@ -1,0 +1,1 @@
+* https://opstrip.com/2017/05/31/Deploying-php71-and-opening-MySQL-extension-on-CentOS7/

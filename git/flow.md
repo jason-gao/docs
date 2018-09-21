@@ -91,6 +91,12 @@ git config core.ignorecase false
 * git clone -b 分支名 仓库地址 代码目录
     * git clone -b xx https://github.com/xx.git /data/www/xx
 
+# 修改上次commit的信息
+* git commit --amend
+
+# 获取上次的commit id
+* git rev-parse HEAD
+* git rev-parse --short HEAD 短的commit id
 
 # tag
 1) delete local tag '12345'

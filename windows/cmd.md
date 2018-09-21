@@ -1,3 +1,4 @@
+* https://www.cnblogs.com/kekec/p/3662125.html
 * 查看端口进程ID
     * netstat -ano|findstr "9000"
 * 查看路由表

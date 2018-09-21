@@ -49,3 +49,19 @@ INSERT INTO users(user_name, emails) VALUES('小王8','aa@email.com,bb@email.com
 INSERT INTO users(user_name, emails) VALUES('小王9','aa@email.com,bb@email.com,cc@email.com');
 
 ```
+
+# SUBSTRING_INDEX
+* https://stackoverflow.com/questions/25037147/using-a-substring-index-in-a-where-clause-for-mysql
+```mysql
+    SELECT 
+    SUBSTRING_INDEX(phone,'-',2) AS PNumber, 
+    SUBSTRING_INDEX(phone,'-', -1) AS Ext, 
+    phone FROM tb_user  
+    WHERE ucid=271338;
+    +--------------+------+-------------------+  
+    | PNumber      |  Ext |       phone       |  
+    +--------------+------+-------------------+  
+    | 010-88888882 | 5612 | 010-88888882-5612 |  
+    +--------------+------+-------------------+  
+```
+
