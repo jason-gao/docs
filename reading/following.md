@@ -1,11 +1,13 @@
 # tec
 * https://zzyongx.github.io/blogs/index.html
+* https://coolshell.cn/featured
 
 # mysql
 * https://www.teakki.com/p/57e2279ca16367940da625c4
 
 # php
 * https://github.com/elarity
+* https://github.com/yeszao/dnmp
 
 # multi pro
 * https://github.com/luxixing/swoole-task
@@ -33,3 +35,17 @@
 
 # js
 * https://github.com/fouber/blog/issues/10
+
+# git
+* https://orzfly.com/html/diff-and-patch-and-windows.html
+
+# java
+* https://github.com/kohsuke/github-api
+
+# lua
+* https://blog.codingnow.com/2010/06/masterminds_of_programming_7_lua.html
+* https://github.com/cloudwu?tab=repositories
+* http://luajit.org/running.html#opt_b
+
+# nginx
+* https://github.com/bingbo/blog/wiki/NGINX处理请求的几个阶段
