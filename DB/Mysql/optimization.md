@@ -3,7 +3,7 @@
 +   https://code.tutsplus.com/tutorials/top-20-mysql-best-practices--net-7855
 
 # 索引优化
-* https://tech.meituan.com/mysql-index.html
+* https://tech.meituan.com/mysql_index.html
 
  * in索引问题
     * https://www.zhihu.com/question/47729666
