@@ -24,4 +24,27 @@
     * https://www.elastic.co/guide/en/elasticsearch/reference/current/_executing_aggregations.html
     * https://es.xiaoleilu.com/010_Intro/35_Tutorial_Aggregations.html
     
+# 返回空的buckets
+* https://www.elastic.co/guide/cn/elasticsearch/guide/current/_returning_empty_buckets.html
+```json
+{
+   "size" : 0,
+   "aggs": {
+      "sales": {
+         "date_histogram": {
+            "field": "sold",
+            "interval": "month",
+            "format": "yyyy-MM-dd",
+            "min_doc_count" : 0, 
+            "extended_bounds" : { 
+                "min" : "2014-01-01",
+                "max" : "2014-12-31"
+            }
+         }
+      }
+   }
+}
+```
+    
+    
     

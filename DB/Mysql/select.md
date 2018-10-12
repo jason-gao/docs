@@ -35,3 +35,7 @@ GROUP BY
 * 当前时间
     * select now(); --2018-09-04 13:55:54
     * select unix_timestamp(now()); --1536040561
+    
+    
+# 补全为空的数据
+    * https://segmentfault.com/q/1010000006663965
