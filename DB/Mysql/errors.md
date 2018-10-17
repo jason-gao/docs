@@ -51,3 +51,10 @@
         * message: SQLSTATE[HY000] [1045] Access denied for user 'php1'@'192.168.5.188' (using password: YES)
         * code: 1045
         
+        
+        
+## 外键
+    * errno: 150 "Foreign key constraint is incorrectly formed"
+            * 字段类型和长度必须一致
+            * 如果非主键一定要加上索引
+            
