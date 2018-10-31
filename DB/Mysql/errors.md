@@ -57,4 +57,8 @@
     * errno: 150 "Foreign key constraint is incorrectly formed"
             * 字段类型和长度必须一致
             * 如果非主键一定要加上索引
-            
+    * errno: 121 "Duplicate key on write or update"
+
+## pdo error
+   * SQLSTATE[HY093]: Invalid parameter number: number of bound variables does not match number of tokens
+               

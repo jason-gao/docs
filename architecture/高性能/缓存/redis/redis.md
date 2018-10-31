@@ -31,3 +31,10 @@
     * key不存在会创建
     * field不存在会添加并返回1
     * field存在会更新并返回0
+    
+* scan 
+    * https://github.com/phpredis/phpredis#scan
+    * https://redis.io/commands/scan
+    * scan 0 match *yd* count 10000
+    * scan count 是先取count个，然后看有多少匹配
+    * https://hotexamples.com/
