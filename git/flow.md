@@ -99,12 +99,14 @@ git config core.ignorecase false
 * git rev-parse --short HEAD 短的commit id
 
 # tag
-1) delete local tag '12345'
+1) 删除本地标签 '12345'
     git tag -d 12345
-2) delete remote tag '12345' (eg, GitHub version too)
+2) 删除远程标签 '12345' (eg, GitHub version too)
     git push origin :refs/tags/12345
-3) alternative approach
+3) 删除远程标签替代方法
     git push --delete origin tagName
-    git tag -d tagName   
-    
+4) 打标签
+    git tag -a v1.1.4 -m "tagging version 1.1.4"
+5) 列出标签
+    git tag
     
