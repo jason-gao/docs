@@ -23,6 +23,16 @@ wget -qO- https://raw.github.com/ma6174/vim/master/setup.sh | sh -x
 * n 继续查找
 * N 反向查找
 
+* 行号
+    * 设置行号 :set nu
+    * 取消行号 :set nonu
+
+# vim下函数跳转
+    * sudo apt-get install exuberant-ctags ->ubuntu
+    * yum install ctags -> centos
+    * 进入源码目录ctags -R . 生成tags文件
+    * CTRL + ]  跳转
+    * CTRL + T 跳回来
  
  
  

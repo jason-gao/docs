@@ -4,7 +4,11 @@
             Codename:	xenial
     * vim /etc/apt/sources.list
 ```ini
+
 # aliyun
+
+```
+
 deb-src http://archive.ubuntu.com/ubuntu xenial main restricted #Added by software-properties
 deb http://mirrors.aliyun.com/ubuntu/ xenial main restricted
 deb-src http://mirrors.aliyun.com/ubuntu/ xenial main restricted multiverse universe #Added by software-properties

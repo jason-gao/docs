@@ -1,0 +1,2 @@
+# 添加字段
+    - ALTER TABLE `xx` ADD COLUMN `xx` TINYINT (3) UNSIGNED NOT NULL DEFAULT '0' COMMENT '是否是管理员:1-是，0-否'

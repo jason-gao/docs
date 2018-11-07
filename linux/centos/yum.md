@@ -1,3 +1,6 @@
+# 添加yum源
+    * https://blog.itnmg.net/2012/09/17/centos-yum-source/
+    
 # 安装epel源
 +   yum install epel-release
 
