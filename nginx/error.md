@@ -6,3 +6,8 @@
 * 24 too many open files
     * http://blog.51cto.com/dengxi/1840612
     * https://stackoverflow.com/questions/46172986/nginx-loadbalancer-too-many-open-files
+    
+    
+* Primary script unknown
+    * https://blog.zengrong.net/post/2649.html
+    * fastcgi_param  SCRIPT_FILENAME  $document_root$fastcgi_script_name;

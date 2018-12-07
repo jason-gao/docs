@@ -10,6 +10,18 @@
 * https://github.com/elarity
 * https://github.com/yeszao/dnmp
 * https://github.com/Yurunsoft?tab=repositories
+* https://github.com/psecio
+* https://github.com/wxb/phpLab
+* https://github.com/qishibo
+* https://github.com/anchnet/aliyun-openapi-php-sdk
+* https://github.com/AxiosCros/vagrant-php-devenv
+
+
+
+## php论坛
+* https://github.com/flarum/flarum
+* https://github.com/summerblue/phphub
+* https://github.com/laravelio/laravel.io
 
 # multi pro
 * https://github.com/luxixing/swoole-task
@@ -54,3 +66,6 @@
 
 # linux
 * https://github.com/jaywcjlove/linux-command
+
+# other
+* https://github.com/rfyiamcool/share_ppt

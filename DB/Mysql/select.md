@@ -39,3 +39,18 @@ GROUP BY
     
 # 补全为空的数据
     * https://segmentfault.com/q/1010000006663965
+    
+## 时间分组
+```mysql
+
+SELECT
+	count(*) c,
+	DATE_FORMAT(log.created_at, '%Y-%m-%d') AS t
+FROM
+	cpv4_log_download_operate_log log
+GROUP BY
+	t
+ORDER BY NULL
+
+```
+    

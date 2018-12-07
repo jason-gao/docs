@@ -61,4 +61,10 @@
 
 ## pdo error
    * SQLSTATE[HY093]: Invalid parameter number: number of bound variables does not match number of tokens
-               
+
+## 大数据表索引产生的问题
+  * http://seanlook.com/2017/09/23/rds_disk_io_troubleshooting/
+  * https://www.jianshu.com/p/52bfb727eb0a
+  * 大数据如果直接加索引，可能会锁住表，show processlist; 会看到一些statics状态的sql
+  * 线上运行的大数据表如何加索引？？？
+                   

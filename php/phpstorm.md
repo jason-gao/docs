@@ -9,3 +9,8 @@
 * 正则替换
     * ctrl+R 勾选regex
     * \* @apiGroup 云解析-自定义线路 -> \* @apiGroup 云解析-自定义线路\n     * @apiPrivate notEmpty
+    
+    
+* ctrl+alt+l 快捷键突然失效
+    * 发现被网易云音乐占用。。修改后就好了
+    
