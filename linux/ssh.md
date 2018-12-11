@@ -16,3 +16,18 @@
 
 * ssh keys
     * https://wiki.archlinux.org/index.php/SSH_keys_(%E7%AE%80%E4%BD%93%E4%B8%AD%E6%96%87)#.E8.83.8C.E6.99.AF
+    
+* 免密登录
+    * https://www.ssh.com/ssh/copy-id
+    
+    ```
+    生成公私钥对
+    ssh-keygen
+    
+    设置互信
+    ssh-copy-id -i ~/.ssh/id_rsa.pub root@127.0.0.1
+    
+    test
+    ssh -i ~/.ssh/id_rsa.pub root@127.0.0.1
+    
+    ```

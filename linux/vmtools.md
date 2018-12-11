@@ -1,4 +1,5 @@
 # ubuntu
+* [vmtools](ubuntu/vmtools.md)
 * error
 * VMware Tools installation cannot be started manually while Easy Install is in progress.
 * Resolution： https://kb.vmware.com/s/article/1017687
