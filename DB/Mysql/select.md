@@ -53,4 +53,8 @@ GROUP BY
 ORDER BY NULL
 
 ```
+
+## 查询加上虚拟自增列
+* SELECT @:=@+1 AS sid, a.* FROM  cpv4_order a ,(SELECT @:=0) r; 
+
     

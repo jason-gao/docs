@@ -24,5 +24,9 @@
     
 # su su- sudo su sudo
     * http://cn.linux.vbird.org/linux_basic/0410accountmanager_4.php
+    
+# cd
+    * cd !$  把上个命令的参数作为cd参数使用
+    * cd -  返回进入此目录之前所在的目录
         
     

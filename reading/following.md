@@ -1,7 +1,11 @@
+# qs
+* https://stackoverrun.com/
+
 # tec
 * https://zzyongx.github.io/blogs/index.html
 * https://coolshell.cn/featured
 * https://github.com/jaywcjlove *****
+
 
 # mysql
 * https://www.teakki.com/p/57e2279ca16367940da625c4

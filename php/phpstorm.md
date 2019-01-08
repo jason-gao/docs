@@ -1,3 +1,6 @@
+## license server
+* https://gist.github.com/oct111992/383283462a2fa11defffbf401ecbdf7f
+
 * 动态方法追踪 .phpstorm.meta.php
     * https://segmentfault.com/q/1010000005896085
     * http://php-di.org/doc/ide-integration.html
@@ -13,4 +16,8 @@
     
 * ctrl+alt+l 快捷键突然失效
     * 发现被网易云音乐占用。。修改后就好了
+    
+* 全局搜索不起作用
+    * 编辑器异常退出或者机突然死机后，编辑器不能搜索
+    * File | Invalidate Caches 重启后可以解决
     
