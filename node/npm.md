@@ -8,3 +8,4 @@
 * npm adduser 按提示输入用户名密码登录
 * npm publish 发布
 * npm unpublish xynf@1.0.0 删除,删除后24小时候才能提交
+
