@@ -68,3 +68,5 @@
   * 大数据如果直接加索引，可能会锁住表，show processlist; 会看到一些statics状态的sql
   * 线上运行的大数据表如何加索引？？？
                    
+## deadlock
+* https://www.jianshu.com/p/6049b046e7b4                   

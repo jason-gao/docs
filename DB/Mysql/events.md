@@ -4,9 +4,13 @@
 * show events
 * 打开事件调度
     * 添加事件不生效？
+    * 事件调度默认关闭的，查看事件开启状态
     * show variables like '%event_scheduler%';
+    * 临时开启-数据库重启后失效
     * SET GLOBAL event_scheduler = ON;
-
+    * 永久开启
+    * vim /etc/my.cnf
+    * event_scheduler=ON && 重启mysql
 
 # 定时更新表记录
 ```mysql
