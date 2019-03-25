@@ -11,6 +11,7 @@
         下游读取客户端需要线性扫描读取每个队列并读取。这里面有个问题就是：原来beanstalk设置的读取超时时间，会在现有的策略中放大N倍。
         
 # https://beanstalkd.github.io/
+    * http://wppurking.github.io/2012/10/01/chu-shi-beanstalk.html
     * yum install beanstalkd
     * beanstalkd -l 0.0.0.0 -p 11300 -b /tmp  -b 指定目录这样重启后任务不会丢失
     * beanstalkd -h  帮助

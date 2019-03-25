@@ -65,3 +65,5 @@ INSERT INTO users(user_name, emails) VALUES('小王9','aa@email.com,bb@email.com
     +--------------+------+-------------------+  
 ```
 
+# 替换字段内容
+update xx set info = replace(info, 'CDN网络', '性能优化');
