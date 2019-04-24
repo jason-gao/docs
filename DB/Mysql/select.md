@@ -1,6 +1,7 @@
 * 查询区分大小写 【BINARY】【REGEXP】
     * 查询包含大写字母的记录
     * SELECT * FROM member_domain WHERE BINARY domain REGEXP '[A-Z]' limit 100;
+    * SELECT * FROM `xx` WHERE name REGEXP BINARY  '[A-Z]';
     
 * left join  where条件
 ```mysql

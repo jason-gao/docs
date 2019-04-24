@@ -10,4 +10,5 @@
     * ll -lth /tmp/testf.log
     * sz /tmp/testf.log
     
-
+* 查看前后几行-前后20行
+* cat  /var/log/xx.log |grep -C 20 185838
