@@ -86,6 +86,7 @@
     * https://xdebug.org/docs/remote
     * https://blog.rabin.io/sysadmin/how-to-debug-php-script-from-the-cli-with-php-xdebug
     * debug： cd /mnt/hgfs/YunDun/home-v4-cli/ && php -dxdebug.remote_enable=1 -dxdebug.remote_mode=req -dxdebug.remote_port=9000 -dxdebug.remote_host=192.168.5.118  -dxdebug.remote_autostart=1 -dxdebug.idekey=PHPSTORM bin/ypfclijob \\Controller\\Cli\\Batch\\BatchCloudDnsOp\\main
-
+    * F:\soft\xampp-php5.6.20\php\php.exe -dxdebug.remote_enable=1 -dxdebug.remote_mode=req -dxdebug.remote_port=9000 -dxdebug.remote_host=127.0.0.1 E:\YunDun\dnsconfcreate\RabbitMqServiceTest.php
+        
 
     
