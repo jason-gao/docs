@@ -57,6 +57,23 @@
         
     ```
     
-#     
+# autoload
+* https://gywbd.github.io/posts/2014/12/composer-autoload.html
+ 
+```json
+
+
+{
+    "name" : "autoload-test",
+    "autoload" : {
+        "classmap" : ["classes/"],
+        "files" : ["common/util.php"],
+        "psr-4" : {
+            "school\\" : "src/"
+        }
+    }
+}
+
+```
     
     

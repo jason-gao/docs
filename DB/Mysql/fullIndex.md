@@ -57,6 +57,9 @@ SELECT * FROM tag;
     * https://dev.mysql.com/doc/refman/5.6/en/fulltext-fine-tuning.html#fulltext-rebuild-innodb-indexes
     * drop index and then add index
 
+## 中文支持
+* https://blog.csdn.net/qq_33663251/article/details/69612619
+* https://www.jianshu.com/p/c48106149b6a
 
 
 
