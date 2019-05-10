@@ -18,3 +18,10 @@
     }
     ```
     * composer update --prefer-dist
+    
+    
+###### composer require composer.lock is satisfiable but these conflict with your requirements or minimum-stability
+
+- resolve: https://github.com/composer/composer/issues/5211
+- http://webtips.krajee.com/setting-composer-minimum-stability-application/
+    
