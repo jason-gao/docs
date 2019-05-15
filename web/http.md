@@ -25,4 +25,7 @@
         auth_basic_user_file /etc/apache2/.htpasswd;
     }
     ```
-## htpasswd 文件里的密码是md5的    
+## htpasswd 文件里的密码是md5的
+    
+## http status code
+- https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Status/206    
