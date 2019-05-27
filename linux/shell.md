@@ -18,3 +18,17 @@
 * 日志写入文件
     * command >> file 追加方式
     * command > file  覆盖方式
+    
+* 字符串拼接,直接放到一起或用双引号即可
+```bash
+#!/bin/bash
+
+c=$a$b
+c=$a"xyz"$b
+c=$a$b.txt
+    
+```
+
+* 字符串操作
+- https://www.cnblogs.com/gaochsh/p/6901809.html
+- https://www.cnblogs.com/yajing-zh/p/4924118.html

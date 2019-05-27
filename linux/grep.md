@@ -9,6 +9,8 @@
     * grep -i '\"log_type\":\"waf\"' /tmp/test.log > /tmp/testf.log
     * ll -lth /tmp/testf.log
     * sz /tmp/testf.log
-    
+    * grep -r  go-go1.7 ~ 家目录全局搜索
+        
 * 查看前后几行-前后20行
 * cat  /var/log/xx.log |grep -C 20 185838
+

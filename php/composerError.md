@@ -25,3 +25,18 @@
 - resolve: https://github.com/composer/composer/issues/5211
 - http://webtips.krajee.com/setting-composer-minimum-stability-application/
     
+## composer version not match
+- https://codeday.me/bug/20190304/708831.html
+```text
+composer install --ignore-platform-reqs
+```    
+```json
+{
+    "config": {
+        "platform":{
+            "php":"5.5"
+        }
+    }
+}
+```
+    

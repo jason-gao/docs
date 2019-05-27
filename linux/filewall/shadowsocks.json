@@ -1,0 +1,12 @@
+{
+    "server": "xx",
+    "local_address": "127.0.0.1",
+    "local_port": 1080,
+    "timeout": 300,
+    "workers": 1,
+    "server_port": 1889,
+    "password": "xx",
+    "method": "AES-256-CFB",
+    "obfs": "plain",
+    "protocol": "auth_sha1_v4"
+}
