@@ -24,3 +24,14 @@ drwxr-xr-x+ 34 crystal  staff  1088 Apr 27 22:28 ..
 *  pbcopy < ~/.ssh/gitlabcompany.pub  公钥内容拷贝到剪贴板
 *  gitlab->个人资料->ssh密钥 贴进去
 
+#### error
+ Committer: crystal <crystal@crystaldeMac.local>
+您的姓名和邮件地址基于登录名和主机名进行了自动设置。请检查它们正确
+与否。您可以对其进行设置以免再出现本提示信息。运行如下命令在编辑器
+中编辑您的配置文件：
+
+    git config --global --edit
+
+设置完毕后，您可以用下面的命令来修正本次提交所使用的用户身份：
+
+    git commit --amend --reset-author

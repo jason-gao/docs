@@ -16,5 +16,15 @@ alias ctime='echo `date "+%Y-%m-%d %H:%M:%S"`'
 alias updateapidoctotest='git checkout master && git branch -d tester && git push origin --delete tester && git checkout -b tester && git push origin tester:tester'
 alias update_apidoctotest_onestep='makeapidocv4 && makeapidocsso && makeapidocadminv5api && pullmaster && cmmaster && updateapidoctotest && ctime'
 
+alias gphot='git rev-parse --abbrev-ref HEAD | xargs -t -i git push origin {}:tester-{}'
+alias gpho='git rev-parse --abbrev-ref HEAD | xargs -t -i git push origin {}:{}'
+alias gplo='git rev-parse --abbrev-ref HEAD | xargs -t -i git pull origin {}'
+alias gcm='git checkout master'
+alias gct='git checkout tester'
+alias gcp='git checkout pre'
+alias gc='git checkout '
+alias gbgrep='git branch |grep '
+alias gm='git merge '
+
 ```
 3. source /etc/profile.d/myalias.sh

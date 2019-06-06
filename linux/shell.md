@@ -1,3 +1,5 @@
+[shell](../../shell)
+
 * 前面条件不成立的时候才执行后面
     * ||
     * cron里没有再执行echo
@@ -32,3 +34,4 @@ c=$a$b.txt
 * 字符串操作
 - https://www.cnblogs.com/gaochsh/p/6901809.html
 - https://www.cnblogs.com/yajing-zh/p/4924118.html
+

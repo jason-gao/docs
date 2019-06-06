@@ -1,0 +1,2 @@
+- https://moonbingbing.gitbooks.io/openresty-best-practices/
+- https://github.com/Kong/kong

@@ -39,6 +39,7 @@ Bug分支的名字，可以采用bug-*的形式命名
 
 # 显示当前的配置
 git config --list
+git config --global --edit
 
 1. 设置别名
 git config --global alias.cm commit
