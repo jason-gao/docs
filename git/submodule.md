@@ -24,8 +24,10 @@ Git 通过子模块来解决这个问题。 子模块允许你将一个 Git 仓�
 * 克隆
     * 默认克隆下来的是空
         * resolve:
-    * git submodule init
-    * git submodule update
+            * git submodule init
+            * git submodule update
+            或者：
+            git clone --recursive xxx
     
 * 拉取上游修改
    * git fetch
