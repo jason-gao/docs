@@ -11,3 +11,12 @@
     * /usr/bin/tree
     * /usr/share/doc/tree-1.5.3
 
+
+
+#### Use the aliyun-repo instead of centos.org-repo
+- https://mirrors.aliyun.com/repo/
+yum -y install wget
+mv /etc/yum.repos.d/CentOS-Base.repo /etc/yum.repos.d/CentOS-Base.repo.bak-`date +%Y%m%d%H%M%S`
+wget -O /etc/yum.repos.d/CentOS-Base.repo http://mirrors.aliyun.com/repo/Centos-7.repo
+yum clean all
+yum makecache fast

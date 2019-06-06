@@ -11,10 +11,11 @@ echo 'alias workspace_doc="cd /Users/crystal/codes/php/github/docs"' >> ~/.bash_
 echo 'alias workspace_doc_yd="cd /Users/crystal/codes/yundun"' >> ~/.bash_profile
 echo 'alias workspace="cd /Users/crystal/codes/yundun"' >> ~/.bash_profile
 
+
 ## git alias
-echo 'alias gphot="git rev-parse --abbrev-ref HEAD | xargs -t -i git push origin {}:tester-{}"' >> ~/.bash_profile
-echo 'alias gpho="git rev-parse --abbrev-ref HEAD | xargs -t -i git push origin {}:{}"' >> ~/.bash_profile
-echo 'alias gplo="git rev-parse --abbrev-ref HEAD | xargs -t -i git pull origin {}"' >> ~/.bash_profile
+echo 'alias gphot="git rev-parse --abbrev-ref HEAD | xargs -t -I {} git push origin {}:tester-{}"' >> ~/.bash_profile
+echo 'alias gpho="git rev-parse --abbrev-ref HEAD | xargs -t -I {} git push origin {}:{}"' >> ~/.bash_profile
+echo 'alias gplo="git rev-parse --abbrev-ref HEAD | xargs -t -I {} git pull origin {}"' >> ~/.bash_profile
 echo 'alias gcm="git checkout master"' >> ~/.bash_profile
 echo 'alias gct="git checkout tester"' >> ~/.bash_profile
 echo 'alias gcp="git checkout pre"' >> ~/.bash_profile
