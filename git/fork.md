@@ -7,3 +7,4 @@
     * git checkout master 切到本地master分支
     * git merge upstream/master 合并远程的upstream的代码到本地master 
         
+    

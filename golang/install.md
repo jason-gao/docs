@@ -19,4 +19,4 @@ export PATH=$GOBIN:$PATH
 ```
 
 ## go version
-- go version go1.7 linux/amd64
+- go version go1.12.5 linux/amd64
