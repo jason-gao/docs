@@ -26,8 +26,10 @@
     
     设置互信
     ssh-copy-id -i ~/.ssh/id_rsa.pub root@127.0.0.1
+    输入要连接的主机的密码
     
     test
     ssh -i ~/.ssh/id_rsa.pub root@127.0.0.1
+   
     
     ```
