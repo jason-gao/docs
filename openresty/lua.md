@@ -1,0 +1,4 @@
+- https://www.lua.org/
+- https://wiki.jikexueyuan.com/project/lua/overview.html
+- https://www.kancloud.cn/thinkphp/lua-guide/43810
+- https://moonbingbing.gitbooks.io/openresty-best-practices/lua/metatable.html
