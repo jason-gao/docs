@@ -1,1 +1,2 @@
-* https://www.jianshu.com/p/6c7a155fc372
+- https://www.jianshu.com/p/6c7a155fc372
+- https://github.com/lennylxx/ipv6-hosts/wiki/1e100.net

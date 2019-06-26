@@ -116,6 +116,23 @@ pecl install msgpack
 
 pecl install memcached
 
+pecl install redis
+
+
+Warning: preg_match(): Unknown modifier '7' in Builder.php on line 310
+PHP Warning:  preg_match(): Unknown modifier '7' in /usr/local/Cellar/php@7.2/7.2.19/share/php@7.2/pear/PEAR/Builder.php on line 310
+
+Warning: preg_match(): Unknown modifier '7' in /usr/local/Cellar/php@7.2/7.2.19/share/php@7.2/pear/PEAR/Builder.php on line 310
+
+Build process completed successfully
+Installing '/usr/local/Cellar/php@7.2/7.2.19/pecl/20170718/redis.so'
+install ok: channel://pecl.php.net/redis-4.3.0
+Extension redis enabled in php.ini
+
+
+
+
+
 
 
 
