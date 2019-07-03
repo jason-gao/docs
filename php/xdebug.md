@@ -8,7 +8,7 @@
 * https://paper.seebug.org/308/  *****
 * http://www.plqblog.com/views/article.php?id=30
 * http://xxlegend.com/2017/05/23/PhpStorm%20Xdebug%E8%BF%9C%E7%A8%8B%E8%B0%83%E8%AF%95%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E5%8E%9F%E7%90%86%E5%88%86%E6%9E%90%E5%8F%8A%E9%97%AE%E9%A2%98%E6%8E%92%E6%9F%A5/
-
+* https://javorszky.co.uk/2018/05/03/getting-xdebug-working-on-php-7-2-and-homebrew/
 
 # windows xampp
     * php5.6 + apache
@@ -90,3 +90,6 @@
         
 
     
+# 安装后默认会替换var_dump，出现文件路径和行号
+    - https://xdebug.org/docs/all_settings#overload_var_dump
+    - xdebug.overload_var_dump = 0

@@ -28,4 +28,9 @@
 ## htpasswd 文件里的密码是md5的
     
 ## http status code
-- https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Status/206    
+- https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Status/206 
+
+
+## 隐性转发
+* 一般cdn的隐形转发都是通过iframe来搞的，如果源有安全策略，会产生空白页
+ - https://developer.mozilla.org/zh-CN/docs/Web/HTTP/X-Frame-Options   
