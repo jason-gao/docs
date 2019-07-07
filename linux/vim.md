@@ -35,4 +35,20 @@ wget -qO- https://raw.github.com/ma6174/vim/master/setup.sh | sh -x
     * CTRL + T 跳回来
  
  
- 
+## vim插件
+- http://coderunthings.com/2015/12/09/frontendvim/ 
+```text
+前端常用插件
+以下是我平时前端开发中用到的插件：
+NerdTree。必装插件，实现树状文件查找。
+YouCompleteMe。必备插件，代码自动补齐。
+emmet-vim。必备插件，zen-coding。
+vim-multiple-cursors。同时多行编辑。
+indentLine。显示代码缩进。
+syntastic。语法检查。
+javascript-libraries-syntax.vim。JS代码高亮插件。
+vim-javascript-syntax。代码折叠。
+tern_for_vim。快速跳转到变量/函数定义的地方。
+JavaScript-Indent。代码缩进
+
+```

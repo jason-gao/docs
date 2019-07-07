@@ -9,3 +9,9 @@ fatal: index file corrupt
 
 # config
 fatal: bad config file line 1 in .git/config
+
+
+# git pull error
+- fatal: refusing to merge unrelated histories
+- git pull origin master --allow-unrelated-histories 
+- https://git-scm.com/docs/git-pull#Documentation/git-pull.txt---allow-unrelated-histories

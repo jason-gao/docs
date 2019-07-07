@@ -9,3 +9,6 @@
 * npm publish 发布
 * npm unpublish xynf@1.0.0 删除,删除后24小时候才能提交
 
+
+## --save-dev
+- https://segmentfault.com/q/1010000000403629
