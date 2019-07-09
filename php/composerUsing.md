@@ -32,7 +32,7 @@
       "repositories": [
         {
           "type": "vcs",
-          "url": "git@git.nodevops.cn:composergroup/rbac.git"
+          "url": "git@git.xx.cn:composergroup/rbac.git"
         }
       ],
       "require": {
