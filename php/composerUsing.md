@@ -79,5 +79,10 @@
 # version
 * https://getcomposer.org/doc/articles/versions.md#tags
 
-    
+
+## 安装指定版本库
+- composer require predis/predis ~1.0.0
+
+## 搜索
+- composer search predis/predis    
     
