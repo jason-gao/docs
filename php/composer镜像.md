@@ -4,3 +4,12 @@
     * composer config -g --unset repos.packagist
     $ composer -vvv create-project laravel/laravel blog
     $ composer -vvv require psr/log
+
+    
+    
+## 阿里云
+- https://opsx.alibaba.com/mirror?lang=zh-CN
+- https://mirrors.aliyun.com/composer/
+
+## 腾讯云
+- https://mirrors.cloud.tencent.com/composer/    
