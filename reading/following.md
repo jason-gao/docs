@@ -35,6 +35,7 @@
 
 # safe
 * https://github.com/w1109790800/penetration
+* https://blog.spoock.com/2016/10/16/php-serialize-problem/
 
 # web dev
 * https://developer.mozilla.org/en-US/docs/Web/HTTP/Caching
@@ -68,6 +69,9 @@
 * https://github.com/cloudwu?tab=repositories
 * http://luajit.org/running.html#opt_b
 
+# python
+- https://github.com/kenwoodjw/python_interview_question/blob/master/README.md
+
 # nginx
 * https://github.com/bingbo/blog/wiki/NGINX处理请求的几个阶段
 
@@ -76,3 +80,4 @@
 
 # other
 * https://github.com/rfyiamcool/share_ppt
+

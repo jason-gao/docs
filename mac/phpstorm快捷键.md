@@ -6,3 +6,4 @@ fn+shift+f6
 ## 打开终端
 fn+alt+f12
 
+
