@@ -28,3 +28,25 @@ alias gm='git merge '
 
 ```
 3. source /etc/profile.d/myalias.sh
+
+
+## linux-centOs
+git config --global alias.cm commit
+git config --global alias.st status
+git config --global alias.co checkout
+
+cd /etc/profile.d && touch myalias.sh && vim /etc/profile.d/myalias.sh
+
+```bash
+
+alias gphot='git rev-parse --abbrev-ref HEAD | xargs -t -i git push origin {}:tester-{}'
+alias gpho='git rev-parse --abbrev-ref HEAD | xargs -t -i git push origin {}:{}'
+alias gplo='git rev-parse --abbrev-ref HEAD | xargs -t -i git pull origin {}'
+alias gcm='git checkout master'
+alias gct='git checkout tester'
+alias gcp='git checkout pre'
+alias gc='git checkout '
+alias gbgrep='git branch |grep '
+alias gm='git merge '
+
+```
