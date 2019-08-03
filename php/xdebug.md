@@ -93,3 +93,21 @@
 # 安装后默认会替换var_dump，出现文件路径和行号
     - https://xdebug.org/docs/all_settings#overload_var_dump
     - xdebug.overload_var_dump = 0
+    
+    
+# var_dump 打印不全
+
+[Xdebug]
+zend_extension="/usr/local/php-5.6.20/lib/php/extensions/no-debug-non-zts-20131226/xdebug.so"
+xdebug.profiler_enable=on
+xdebug.trace_output_dir="/usr/local/php5.6/xdebug/"
+xdebug.profiler_output_dir="/usr/local/php5.6/xdebug/"
+xdebug.remote_enable=on
+xdebug.remote_handler=dbgp
+xdebug.remote_host=192.168.5.118
+xdebug.remote_port=9999
+; 加入下面配置，解决var_dump打印不全问题
+xdebug.var_display_max_children=9999
+xdebug.var_display_max_data=99999
+xdebug.var_display_max_depth=9999
+    

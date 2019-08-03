@@ -35,10 +35,6 @@ listen-address 127.0.0.1:8118
 forward-socks5t / 127.0.0.1:1080 . 
 记录改为配置文件需要重启进程，如果不小心启动了多个进程，需要杀掉
 
-# mac 
-brew install privoxy
-
-
 
 # 走代理
 export http_proxy=http://127.0.0.1:8118  
