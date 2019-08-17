@@ -8,3 +8,10 @@
 
 # blocking
 * https://github.com/php-amqplib/php-amqplib/issues/561
+
+* 心跳
+    * https://www.cnblogs.com/zhjh256/p/6207339.html
+    * https://www.rabbitmq.com/heartbeats.html
+    * https://www.rabbitmq.com/heartbeats.html#disabling
+    * https://github.com/php-amqplib/php-amqplib/issues/696
+    * https://github.com/php-amqplib/php-amqplib/issues/617
