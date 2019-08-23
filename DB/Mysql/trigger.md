@@ -23,6 +23,10 @@ MySQL中，触发器是一种与数据表事件相关的特殊形式的存储过
 该触发器才可被激活，触发程序自动执行。
 可调用存储过程：为响应数据库的变化，触发器可以调用一个或多个存储过程，保证数据完整性、一致性。
 
+总结： 触发器就是当新增、修改、删除记录、事件触发之前或者之后，执行一些动作
+
+[events](./events.md)
+
 CREATE TRIGGER trigger_name trigger_time trigger_event     
 ON tbl_name 
 FOR EACH ROW 
@@ -45,6 +49,8 @@ DROP TRIGGER [IF EXISTS] [schema_name.]trigger_name
 drop trigger if exists default_trigger; 
 
 create DEFINER=`xx`@`172.16.100.%` trigger default_trigger before insert on domains for each row set NEW.hash_md5_dir = substring(lower(md5(NEW.name)), 1, 2);
+
+CREATE TRIGGER `hash_dir` BEFORE INSERT ON `xx` FOR EACH ROW set NEW.hash_md5_dir = substring(lower(md5(NEW.name)), 1, 2);
 
 -- 查看触发器
 SHOW TRIGGERS

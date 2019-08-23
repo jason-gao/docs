@@ -7,3 +7,11 @@
 resty.lrucache 缓存起来，如果是ip直接返回
 
 2.  /etc/hosts 里配置的域名，利用dnsmasq
+
+3. 读取hosts
+	* https://github.com/Kong/lua-resty-dns-client/blob/master/src/resty/dns/utils.lua
+	
+	
+## question
+	* https://www.cnblogs.com/DillGao/p/7372616.html	
+	

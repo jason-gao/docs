@@ -11,6 +11,10 @@
     * 永久开启
     * vim /etc/my.cnf
     * event_scheduler=ON && 重启mysql
+    
+总结： 定时执行一些业务
+
+[triggers](./trigger.md)    
 
 # 定时更新表记录
 ```mysql
