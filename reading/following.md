@@ -22,6 +22,7 @@
 * https://github.com/anchnet/aliyun-openapi-php-sdk
 * https://github.com/AxiosCros/vagrant-php-devenv
 * https://javorszky.co.uk/
+* https://qii404.me/
 
 
 
@@ -36,6 +37,7 @@
 # safe
 * https://github.com/w1109790800/penetration
 * https://blog.spoock.com/2016/10/16/php-serialize-problem/
+* http://blog.nsfocus.net/
 
 # web dev
 * https://developer.mozilla.org/en-US/docs/Web/HTTP/Caching
