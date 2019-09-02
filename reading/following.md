@@ -74,6 +74,9 @@
 # python
 - https://github.com/kenwoodjw/python_interview_question/blob/master/README.md
 
+# go
+- http://zheng-ji.info/
+
 # nginx
 * https://github.com/bingbo/blog/wiki/NGINX处理请求的几个阶段
 
@@ -88,3 +91,6 @@
 
 # 架构
 - https://www.cnblogs.com/zhjh256/category/941206.html
+
+# 算法
+- https://github.com/julycoding/The-Art-Of-Programming-By-July

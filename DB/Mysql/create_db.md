@@ -6,3 +6,4 @@ CREATE DATABASE xx
   DEFAULT CHARACTER SET utf8
   DEFAULT COLLATE utf8_general_ci;
 ```
+create database wp default character set utf8 default collate utf8_general_ci;

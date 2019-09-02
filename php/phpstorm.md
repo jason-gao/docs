@@ -21,3 +21,6 @@
     * 编辑器异常退出或者机突然死机后，编辑器不能搜索
     * File | Invalidate Caches 重启后可以解决
     
+    
+* 清楚断点
+  * Run->view breakpoints    
