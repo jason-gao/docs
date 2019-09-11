@@ -42,6 +42,19 @@
 * make install
 * vim /etc/php.ini
 
+# pecl安装xhprof
+- https://github.com/phacility/xhprof
+- https://pecl.php.net/package/xhprof
+- sudo wget -c http://pear.php.net/go-pear.phar
+- /data/server/php-5.6.24/bin/php /data/soft/go-pear.phar
+- /data/server/php-5.6.24/bin/pecl install xhprof-0.9.4
+- vim /data/server/php-5.6.24/etc/php.ini
+- extension=xhprof.so
+- kill -USR2 4416  重启php-fpm
+- php -m
+
+
+
 ```
 
 [Xdebug]  
