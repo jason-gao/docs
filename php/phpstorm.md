@@ -39,5 +39,8 @@ ZKVVPH4MIO-eyJsaWNlbnNlSWQiOiJaS1ZWUEg0TUlPIiwibGljZW5zZWVOYW1lIjoi5o6I5p2D5Luj5
 * 清楚断点
   * Run->view breakpoints  
   
+* 搜索中文
+	* find in path
+	* [\u4e00-\u9fa5]+   
   
     
