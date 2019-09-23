@@ -1,4 +1,4 @@
-* https://meta.tn/a/76b2585bb521861f3f9906ae16de80cb31750ed167545493614da36a1440a0f2
+-  https://www.liaoxuefeng.com/wiki/896043488029600/897013573512192 
 
 1 master不要直接操作,需要多建分支（严格按照功能拉取分支，减少因为某个功能上不了导致其他功能也无法更新的问题）
 2. 冲突解决：
@@ -23,6 +23,11 @@ iii.	Git push
 a)	git reset 154b0b 默认退到add之前，保留修改
 b)	git reset  --soft 154b0b 退到add之后，commit之前，保留修改
 c)	git reset --hard 154b0b 退到add之前，不保留修改
+d)  git reset --hard HEAD^ 回到上一个版本
+e)  git reset --hard HEAD^^ 回到上上个版本
+f)  用git log可以查看提交历史，以便确定要回退到哪个版本
+g)  要重返未来，用git reflog查看命令历史，以便确定要回到未来的哪个版本
+
 3. 撤销文件更改 git checkout <file>
 临时性分支
 临时性分支主要有三种：
