@@ -39,4 +39,11 @@ composer install --ignore-platform-reqs
     }
 }
 ```
+
+#####
+
+Failed to decode response: zlib_decode(): data error
+Retrying with degraded mode, check https://getcomposer.org/doc/articles/troubleshooting.md#degraded-mode for more info
+
+- https://getcomposer.org/doc/articles/troubleshooting.md#degraded-mode
     
