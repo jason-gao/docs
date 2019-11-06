@@ -11,5 +11,7 @@
 - https://opsx.alibaba.com/mirror?lang=zh-CN
 - https://mirrors.aliyun.com/composer/
 
+- composer config -g repo.packagist composer https://mirrors.aliyun.com/composer/
+
 ## 腾讯云
 - https://mirrors.cloud.tencent.com/composer/    

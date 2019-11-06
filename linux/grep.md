@@ -14,3 +14,8 @@
 * 查看前后几行-前后20行
 * cat  /var/log/xx.log |grep -C 20 185838
 
+* 不区分大小写 -i
+	* env |grep -i -nr php
+* 行号 -n
+* 递归 -r
+	
