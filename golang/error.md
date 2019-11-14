@@ -7,4 +7,8 @@
     git clone https://github.com/golang/text.git
     cd -
     ```
-### Unable to export dependencies to vendor directory: symlink ../values_test.go /xx/vendor/github.com/ugorji/go/codec/bench/values_test.go: operation not supported    
+### Unable to export dependencies to vendor directory: symlink ../values_test.go /xx/vendor/github.com/ugorji/go/codec/bench/values_test.go: operation not supported
+
+
+## time.sleep 程序僵死
+    

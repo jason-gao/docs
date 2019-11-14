@@ -85,4 +85,8 @@
 
 ## 搜索
 - composer search predis/predis    
+
+## composer 优化
+- composer dump-autoload -optimize
+
     
