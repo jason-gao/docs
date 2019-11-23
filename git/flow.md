@@ -115,4 +115,8 @@ git config core.ignorecase false
     git tag -a v1.1.4 -m "tagging version 1.1.4"
 5) 列出标签
     git tag
-    
+
+# tools
+[git自动补全](../mac/git自动补全.md) 
+[git alias](../linux/gitalias.md)  
+[git alias mac](../mac/alias.md)  
