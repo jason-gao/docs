@@ -56,6 +56,8 @@ git config --global alias.co checkout
 3. 基于本地分支拉取新分支
 	git checkout master
 	git checkout -b xxx 基于本地master新拉取分支
+	
+	git checkout -b testx 17ecba942dc25d776f4f31ae5432e15f7ffdd06a 指定commit拉取分支
 4. 删除远程分支
    * git push origin --delete xxx
    * git push origin :xxx
