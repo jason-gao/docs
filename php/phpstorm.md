@@ -93,4 +93,4 @@ host:
 	* find in path
 	* [\u4e00-\u9fa5]+   
   
-    
+* 显示隐藏文件/    
