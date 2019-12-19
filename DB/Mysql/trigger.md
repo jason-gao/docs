@@ -95,3 +95,14 @@ show triggers;
 ```
 
 
+## error
+- 1442 - Can't update table 'member' in stored function/trigger because it is already used by statement which invoked this stored function/trigger.
+
+
+CREATE DEFINER=`php`@`xx.16.xx.%` TRIGGER `xx` BEFORE UPDATE ON `xx` FOR EACH ROW begin
+                if new.member_status != old.member_status THEN
+                set new.member_status_date = now();
+                end if;
+end;
+
+
