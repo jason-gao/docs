@@ -16,3 +16,7 @@ crystal@crystaldeMac conf.d $ brew services start beanstalkd
 crystal@crystaldeMac conf.d $
 crystal@crystaldeMac conf.d $ ps -ef |grep beanstalkd
   501 17558     1   0 11:25上午 ??         0:00.00 /usr/local/opt/beanstalkd/bin/beanstalkd
+  
+  
+### 服务配置文件  
+cat ~/Library/LaunchAgents/homebrew.mxcl.beanstalkd.plist

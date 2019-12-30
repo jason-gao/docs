@@ -1,0 +1,1 @@
+- curl ipconfig.io/json
