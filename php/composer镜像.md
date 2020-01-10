@@ -5,6 +5,8 @@
     $ composer -vvv create-project laravel/laravel blog
     $ composer -vvv require psr/log
 
+# install
+curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/bin/ --filename=composer
     
     
 ## 阿里云

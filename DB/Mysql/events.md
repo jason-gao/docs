@@ -74,3 +74,10 @@ CREATE EVENT del_test
 ON SCHEDULE EVERY 1 MINUTE
 DO
 CALL usp_update_test()
+
+
+--- events
+select count(*) as c from information_schema.`EVENTS` where `STATUS`= 'ENABLED' and EVENT_NAME='xx';
+select count(*) as c from information_schema.`EVENTS` where `STATUS`= 'ENABLED' and EVENT_NAME='xxx';
+修改
+ALTER EVENT `xxx` ENABLE;
