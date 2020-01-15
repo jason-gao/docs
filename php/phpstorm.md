@@ -5,6 +5,9 @@
 重启
 licesnse server -> active
 
+http://jetbrains-license-server/
+
+
 ## license code
 
 ## server for code
