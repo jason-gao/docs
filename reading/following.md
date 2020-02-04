@@ -8,6 +8,13 @@
 * http://wenxueliu.github.io/categories
 * http://m.udpwork.com/
 
+# 教育
+- https://xuetang.wqketang.com/
+- https://lib-nuanxin.wqxuetang.com/#/
+- http://opencourse.pku.edu.cn/course/opencourse/
+  
+
+
 
 # mysql
 * https://www.teakki.com/p/57e2279ca16367940da625c4
