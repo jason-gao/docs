@@ -23,7 +23,7 @@
     * cat /etc/redhat-release   response:CentOS release 6.7 (Final)
     
 # su su- sudo su sudo
-    * http://cn.linux.vbird.org/linux_basic/0410accountmanager_4.php
+ - http://cn.linux.vbird.org/linux_basic/0410accountmanager_4.php
     
 # cd
     * cd !$  把上个命令的参数作为cd参数使用

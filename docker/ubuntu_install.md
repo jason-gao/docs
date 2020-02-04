@@ -5,7 +5,7 @@
 * https://www.cnblogs.com/SzeCheng/p/6822905.html
 * https://draveness.me/docker
 
-* 查看系统版本
+* 查看操作系统版本
     * lsb_release -a
     ```
     No LSB modules are available.
