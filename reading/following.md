@@ -14,6 +14,9 @@
 - http://opencourse.pku.edu.cn/course/opencourse/
 - http://www.njude.com.cn/s_dist.asp?id=0201126034&r_id=r_WYGG2&type=a
   
+  
+# blog
+- http://www.yinwang.org/  
 
 
 # mysql
