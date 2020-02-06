@@ -14,6 +14,10 @@
 - http://opencourse.pku.edu.cn/course/opencourse/
 - http://www.njude.com.cn/s_dist.asp?id=0201126034&r_id=r_WYGG2&type=a
   
+# 云平台
+- https://cloud.tencent.com/developer/labs
+- https://developer.aliyun.com/exam?spm=5176.12825654.h2v3icoap.927.3dbd2c4a0yzJeH&aly_as=1-uX5cdm
+  
   
 # blog
 - http://www.yinwang.org/  
