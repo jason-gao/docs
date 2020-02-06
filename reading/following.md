@@ -17,7 +17,9 @@
 # 云平台
 - https://cloud.tencent.com/developer/labs
 - https://developer.aliyun.com/exam?spm=5176.12825654.h2v3icoap.927.3dbd2c4a0yzJeH&aly_as=1-uX5cdm
-  
+
+# 云课堂
+- https://ke.qq.com/  
   
 # blog
 - http://www.yinwang.org/  
