@@ -19,3 +19,5 @@
 * 行号 -n
 * 递归 -r
 	
+
+* grep -C 5 'parttern' inputfile //打印匹配行的前后5行
