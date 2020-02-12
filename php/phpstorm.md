@@ -1,16 +1,14 @@
 ## license server
 - https://zhile.io/2018/08/25/jetbrains-license-server-crack.html
-/Users/crystal/Library/Application Support/JetBrains/Toolbox/apps/PhpStorm/ch-0/191.7141.52/PhpStorm.app.vmoptions
-添加 -javaagent:/Users/crystal/codes/files/jetbrains-agent/jetbrains-agent.jar
-重启
-licesnse server -> active
-
-http://jetbrains-license-server/
+- /Users/crystal/Library/Application Support/JetBrains/Toolbox/apps/PhpStorm/ch-0/191.7141.52/PhpStorm.app.vmoptions
+- 添加 -javaagent:/Users/crystal/codes/files/jetbrains-agent/jetbrains-agent.jar
+- 重启
+- licesnse server -> active
+- http://jetbrains-license-server/
 
 
 ## license code
-
-## server for code
+### server for code
 - http://lookdiv.com/
 
 
