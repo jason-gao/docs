@@ -89,6 +89,7 @@
 
 # python
 - https://github.com/kenwoodjw/python_interview_question/blob/master/README.md
+- https://github.com/qyuhen/book
 
 # go
 - http://zheng-ji.info/
