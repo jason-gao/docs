@@ -12,6 +12,11 @@
 - http://lookdiv.com/
 
 
+## account
+- 开源项目申请license
+- https://www.jetbrains.com/shop/eform/opensource
+
+
 - key
 
 
