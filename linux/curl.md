@@ -1,9 +1,11 @@
+- http://www.ruanyifeng.com/blog/2019/09/curl-reference.html
 * https://curl.haxx.se/docs/manpage.html
     * -k 跳过https
     * -D file  响应头放入文件
     * -b file  从文件传递cookie
     * -R  --remote-time
     * -O  --remote-name
+    * -x ip:port  指定host
     
 # 命令行
     ```
@@ -42,3 +44,9 @@
     
     ```
     
+- curl url -x ip:port
+- curl -H 'Host:baidu.com' http://10.12.20.21
+- curl http://baidu.com -x 10.12.20.21:80
+- https://www.cnblogs.com/pythonal/p/6677995.html
+
+      
