@@ -1,0 +1,8 @@
+on run {input, parameters}
+
+    tell application "Finder"
+    set selection to make new file at (get insertion location)
+    end tell
+
+    return input
+end run
