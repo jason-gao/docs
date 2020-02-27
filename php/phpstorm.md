@@ -59,9 +59,9 @@
 
 - code style
 	- editor->code style->php->wrapping and braces
-- 等号对齐
-	- assignment statement->align consecutive assignments 勾选上 
-- 数组对齐
-   - Array declaration style->align key-value pairs
+		- 等号对齐
+			- assignment statement->align consecutive assignments 勾选上 
+		- 数组对齐
+   			- Array declaration style->align key-value pairs
    
    
