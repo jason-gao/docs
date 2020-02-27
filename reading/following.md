@@ -80,7 +80,8 @@
 * https://orzfly.com/html/diff-and-patch-and-windows.html
 
 # java
-* https://github.com/kohsuke/github-api
+- https://github.com/kohsuke/github-api
+= https://github.com/macrozheng/mall
 
 # lua
 * https://blog.codingnow.com/2010/06/masterminds_of_programming_7_lua.html

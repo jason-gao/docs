@@ -10,7 +10,7 @@
 ## license code
 ### server for code
 - http://lookdiv.com/
-
+- http://idea.medeming.com/jets/
 
 ## account
 - 开源项目申请license
@@ -55,4 +55,13 @@
 	* find in path
 	* [\u4e00-\u9fa5]+   
   
-* 显示隐藏文件/    
+* 显示隐藏文件/ 
+
+- code style
+	- editor->code style->php->wrapping and braces
+- 等号对齐
+	- assignment statement->align consecutive assignments 勾选上 
+- 数组对齐
+   - Array declaration style->align key-value pairs
+   
+   
