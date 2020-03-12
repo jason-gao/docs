@@ -13,4 +13,7 @@
     
 # count(*)优化
   * http://mysql.taobao.org/monthly/2016/06/10/
-  * https://blog.csdn.net/kjsoftware/article/details/76762208  
+  * https://blog.csdn.net/kjsoftware/article/details/76762208
+  
+# MySQL 最左前缀原则
+- https://www.jianshu.com/p/9b3406bcb199    

@@ -23,7 +23,7 @@
   
 # blog
 - http://www.yinwang.org/  
-
+- https://blog.eyeblue.cn/
 
 # mysql
 * https://www.teakki.com/p/57e2279ca16367940da625c4
@@ -106,9 +106,13 @@
 
 # github
 - https://github.com/mylxsw
+- https://github.com/eyebluecn
 
 # 架构
 - https://www.cnblogs.com/zhjh256/category/941206.html
 
 # 算法
 - https://github.com/julycoding/The-Art-Of-Programming-By-July
+
+# 面试
+- https://www.nowcoder.com/
