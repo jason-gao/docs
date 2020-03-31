@@ -92,6 +92,7 @@ To have launchd start php@7.2 now and restart at login:
 Or, if you don't want/need a background service you can just run:
   php-fpm
   
+  brew services restart php@7.2
 
 ## 安装php扩展
 

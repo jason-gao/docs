@@ -116,3 +116,8 @@
 
 # 面试
 - https://www.nowcoder.com/
+
+
+# 智能家居
+- https://home-assistant.cc/
+
