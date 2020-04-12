@@ -24,6 +24,9 @@
 # blog
 - http://www.yinwang.org/  
 - https://blog.eyeblue.cn/
+- https://hqidi.com/
+- https://type.so/
+- https://tool.lu/nav/
 
 # mysql
 * https://www.teakki.com/p/57e2279ca16367940da625c4
@@ -39,7 +42,7 @@
 * https://github.com/AxiosCros/vagrant-php-devenv
 * https://javorszky.co.uk/
 * https://qii404.me/
-
+* https://github.com/duzhenxun/note
 
 
 ## php论坛
@@ -121,3 +124,5 @@
 # 智能家居
 - https://home-assistant.cc/
 
+# 安全
+- https://github.com/antonioribeiro/firewall
