@@ -1,0 +1,3 @@
+- https://iiis.tsinghua.edu.cn/zh/yao/#yao-jianjie
+- https://iiis.tsinghua.edu.cn/zh/yaoclass/
+- https://iiis.tsinghua.edu.cn/uploadfile/2020/01/28/20200128201301601.pdf
