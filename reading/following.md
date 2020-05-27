@@ -98,6 +98,7 @@
 
 # go
 - http://zheng-ji.info/
+- https://adairxie.github.io/
 
 # nginx
 * https://github.com/bingbo/blog/wiki/NGINX处理请求的几个阶段
