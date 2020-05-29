@@ -5,3 +5,5 @@
     * https://elasticsearch.cn/article/114
 
 * https://www.elastic.co/guide/cn/elasticsearch/php/current/index.html
+
+### template使用
