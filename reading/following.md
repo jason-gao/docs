@@ -136,3 +136,13 @@
 
 ## ios
 - https://github.com/xyui/iOSBlogCN
+
+## 技术栈
+- https://www.cnblogs.com/Neeo/p/10864123.html#more
+
+## 云开发
+- https://workbench.aliyun.com/?spm=a2c6h.14525496.0.0.260a25190E3NNS
+- https://cloud.tencent.com/solution/la
+
+## 微信小程序
+- https://v.qq.com/x/page/m3013k0lkz4.html
