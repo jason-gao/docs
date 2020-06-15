@@ -52,3 +52,11 @@ tern_for_vim。快速跳转到变量/函数定义的地方。
 JavaScript-Indent。代码缩进
 
 ```
+
+## 高亮
+touch ~/.vimrc
+vim ~/.vimrc
+syntax on
+
+
+

@@ -64,4 +64,6 @@
 		- 数组对齐
    			- Array declaration style->align key-value pairs
    
-   
+## phpstorm 撤销 反撤销
+command+z 撤销
+command+shift+z 反撤销   
