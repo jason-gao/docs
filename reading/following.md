@@ -152,3 +152,9 @@
 
 ## 图书馆
 - https://www.ituring.com.cn/
+
+## 源码阅读
+- https://github.com/fatedier/studies
+
+## about
+- https://blog.fatedier.com/about/
