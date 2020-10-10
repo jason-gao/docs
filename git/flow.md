@@ -27,6 +27,8 @@ d)  git reset --hard HEAD^ 回到上一个版本
 e)  git reset --hard HEAD^^ 回到上上个版本
 f)  用git log可以查看提交历史，以便确定要回退到哪个版本
 g)  要重返未来，用git reflog查看命令历史，以便确定要回到未来的哪个版本
+h)  git reset HEAD tests/coverage/* 撤销add
+i)  撤销commit的文件，b->h 
 
 3. 撤销文件更改 git checkout <file>
 临时性分支
