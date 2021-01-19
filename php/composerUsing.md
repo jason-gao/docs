@@ -89,4 +89,6 @@
 ## composer 优化
 - composer dump-autoload -optimize
 
-    
+## composer update
+- composer self-update --2 升级到2版本
+- Use composer self-update --rollback to return to version 1.10.19
