@@ -1,0 +1,1 @@
+查看文件是否有bom头：grep -rlI $'^\xEF\xBB\xBF' .

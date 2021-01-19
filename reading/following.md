@@ -58,6 +58,7 @@
 * https://github.com/w1109790800/penetration
 * https://blog.spoock.com/2016/10/16/php-serialize-problem/
 * http://blog.nsfocus.net/
+* https://www.cnblogs.com/52php/p/5677775.html
 
 # web dev
 * https://developer.mozilla.org/en-US/docs/Web/HTTP/Caching
@@ -69,6 +70,7 @@
 * https://www.cnblogs.com/pastgift/p/5128969.html
 * https://mp.weixin.qq.com/s?__biz=MzAwOTE0ODEwMQ==&mid=403288937&idx=1&sn=1ac81f1c8c0465e32cba9dd6f489fd6a&scene=1
 * http://hushi55.github.io/
+* http://php-note.com/article/1440.html
 
 
 # es6

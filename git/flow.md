@@ -21,7 +21,7 @@ iii.	Git push
 1. 撤销add的文件 git reset HEAD <file>
 2. 撤销commit
 a)	git reset 154b0b 默认退到add之前，保留修改
-b)	git reset  --soft 154b0b 退到add之后，commit之前，保留修改
+b)	git reset --soft 154b0b 退到add之后，commit之前，保留修改
 c)	git reset --hard 154b0b 退到add之前，不保留修改
 d)  git reset --hard HEAD^ 回到上一个版本
 e)  git reset --hard HEAD^^ 回到上上个版本
@@ -124,3 +124,6 @@ git config core.ignorecase false
 [git自动补全](../mac/git自动补全.md) 
 [git alias](../linux/gitalias.md)  
 [git alias mac](../mac/alias.md)  
+
+# diff
+git diff --stat master..tester
