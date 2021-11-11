@@ -127,3 +127,10 @@ git config core.ignorecase false
 
 # diff
 git diff --stat master..tester
+
+# 查看文件的历史提交信息
+git log 文件名
+
+# 查看某个版本某个文件修改情况
+git show 版本号（通过上面的命令查得）  文件名
+
