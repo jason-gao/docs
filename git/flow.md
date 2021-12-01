@@ -135,8 +135,8 @@ git log 文件名
 git show 版本号（通过上面的命令查得）  文件名
 
 # 把某次或者某2个commit区间改动打包
-git diff-tree -r --no-commit-id --name-only b3d5a554 | xargs tar -rf mytarfile.tar
-git diff-tree -r --no-commit-id --name-only b3d5a554  b3d5a555 | xargs tar -rf mytarfile.tar
+- git diff-tree -r --no-commit-id --name-only b3d5a554 | xargs tar -rf mytarfile.tar
+- git diff-tree -r --no-commit-id --name-only b3d5a554  b3d5a555 | xargs tar -rf mytarfile.tar
 
 
 	
