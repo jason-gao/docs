@@ -66,4 +66,11 @@
    
 ## phpstorm 撤销 反撤销
 command+z 撤销
-command+shift+z 反撤销   
+command+shift+z 反撤销  
+
+
+## eval reset 续期 license
+1. 打开ide，在Settings/Preferences… -> Plugins 内手动添加第三方插件仓库地址：https://plugins.zhile.io
+2. 搜索：IDE Eval Reset插件进行安装。如果搜索不到请注意是否做好了上一步？网络是否通畅？插件会提示安装成功 
+3. help---->eval Reset点击重启ide，即可在再次获取30天试用期
+4. 勾选auto reset before per restart

@@ -134,3 +134,10 @@ git log 文件名
 # 查看某个版本某个文件修改情况
 git show 版本号（通过上面的命令查得）  文件名
 
+# 换源
+git remote remove origin
+git reote add origin new_git_address
+
+# 全部分支推送到新库
+git clone --bare ${gitFrom}
+git push --mirror ${gitTo}
