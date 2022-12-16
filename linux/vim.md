@@ -58,5 +58,8 @@ touch ~/.vimrc
 vim ~/.vimrc
 syntax on
 
+## vim全选删除
+gg
+dG
 
 
