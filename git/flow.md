@@ -136,8 +136,8 @@ git show 版本号（通过上面的命令查得）  文件名
 
 
 # 换源
-git remote remove origin
-git reote add origin new_git_address
+- git remote remove origin
+- git remote add origin new_git_address
 
 # 全部分支推送到新库
 git clone --bare ${gitFrom}
